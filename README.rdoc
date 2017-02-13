@@ -1,0 +1,7 @@
+== Soul Medicine
+
+=== Local Development
+
+==== c9
+
+1. sudo service postgresql start
