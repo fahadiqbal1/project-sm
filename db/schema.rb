@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170213174307) do
+ActiveRecord::Schema.define(version: 20170214122545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
+    t.string   "email",                  default: ""
     t.string   "phone_number",           default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 20170213174307) do
     t.datetime "updated_at",                          null: false
     t.string   "otp"
     t.datetime "otp_timestamp"
+    t.datetime "otp_confirmed_at"
+    t.integer  "phone_dial_code",        default: 1
     t.index ["otp"], name: "index_users_on_otp", unique: true, using: :btree
     t.index ["phone_number"], name: "index_users_on_phone_number", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree

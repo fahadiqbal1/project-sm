@@ -26,9 +26,11 @@ gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'devise'
 gem 'dotenv-rails', groups: [:development, :test]
 gem "econfig", require: "econfig/rails"
+gem 'intl-tel-input-rails'
 gem 'sidekiq'
 gem 'sinatra', :require => false
 gem 'sprockets-rails', :require => 'sprockets/railtie'
+gem 'tether-rails' #https://github.com/jakegavin/tether-rails
 gem 'twilio-ruby'
 # End Soul Medicine Gems
 
