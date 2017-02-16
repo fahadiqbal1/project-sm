@@ -1,11 +1,13 @@
 <%= render("shared/navbar") %>
 
-<div class="container">
+<div class="container body-container">
 
   <%= render("shared/flash") %>
   <%= render("shared/page_header") %>
 
-  <%= yield %>
+  <div class="content">
+    <%= yield %>
+  </div>
 
   <%= render("shared/footer") %>
 

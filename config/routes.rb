@@ -7,9 +7,13 @@ Rails.application.routes.draw do
     devise_for :users, controllers: {
       sessions: 'user/sessions'
     }
+    
     root 'home#index'
     
-    resources :confirmation
+    resources :confirmation, only: [:index, :create]
+    
+    get '/ethos' => 'staticpage#ethos'
+    get '/contribute' => 'staticpage#contribute'
     
   end
 

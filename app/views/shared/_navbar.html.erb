@@ -6,15 +6,18 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
+      <%= navbar_link_to( "Home", root_path, :active_when => { :controller => "home" }) %>
+      <%= navbar_link_to( "Ethos", ethos_path, :active_when => { :action => "ethos" }) %>
+      <%= navbar_link_to( "Contribute", contribute_path, :active_when => { :action => "contribute" }) %>
+    </ul>
+    <ul class="navbar-nav">
+      <% if user_signed_in? %>
+        <%= navbar_link_to( "Log Out", destroy_user_session_path, :method => :delete) %>
+      <% else %>
+        <%= navbar_link_to( "Confirm Phone", confirmation_index_path, :active_when => { :controller => "confirmation" }) %>
+        <%= navbar_link_to( "Log In", new_session_path('user'), :active_when => { :controller => "user/sessions" }) %>
+        <%= navbar_link_to( "Sign Up", new_registration_path('user'), :active_when => { :controller => "devise/registrations" }) %>
+      <% end %>
     </ul>
   </div>
 </nav>

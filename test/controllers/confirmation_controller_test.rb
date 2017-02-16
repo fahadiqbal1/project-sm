@@ -6,9 +6,9 @@ class ConfirmationControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get create" do
-    get confirmation_create_url
-    assert_response :success
-  end
+  # test "should get create" do
+  #   get confirmation_create_url
+  #   assert_response :success
+  # end
 
 end

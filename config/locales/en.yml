@@ -1,25 +1,47 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
+  activerecord:
+    models:
+      user: User
+    attributes:
+      user:
+        phone_number_plausibility: must be valid
+        phone_number: Phone Number
+        email: Email
+        password: Password
+        password_confirmation: Password Confirmation
+        otp: Confirmation Code
+        language: Native Language
+  helpers:
+    placeholder:
+      user:
+        language: Your Native Language
+    submit:
+      user:
+        create: Sign Up
+      confirmation:
+        create: Confirm
+  devise:
+    registrations:
+      new:
+        title: Sign Up for Soul Medicine
+    sessions:
+      new:
+        title: Log In
   home:
     index:
       title: Hello
+  staticpage:
+    contribute:
+      title: Contribute
+    ethos:
+      title: Ethos
+  user_texter:
+    welcome_confirm:
+      message: Thank you for signing up to Soul Medicine! Here is your confirmation code
+  confirmation:
+    index:
+      title: Confirm your Phone
+    code_confirmed: Your phone has been confirmed
+    already_confirmed: You have already confirmed your phone
+    code_not_correct: Confirmation Code in Incorrect
+    phone_not_found: Phone Number not found

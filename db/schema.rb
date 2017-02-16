@@ -10,15 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170214122545) do
+ActiveRecord::Schema.define(version: 20170216110730) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "languages", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "is_active",  default: true, null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: ""
     t.string   "phone_number",           default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
+    t.integer  "language_id"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -36,8 +44,9 @@ ActiveRecord::Schema.define(version: 20170214122545) do
     t.datetime "otp_timestamp"
     t.datetime "otp_confirmed_at"
     t.integer  "phone_dial_code",        default: 1
+    t.index ["language_id"], name: "index_users_on_language_id", using: :btree
     t.index ["otp"], name: "index_users_on_otp", unique: true, using: :btree
-    t.index ["phone_number"], name: "index_users_on_phone_number", unique: true, using: :btree
+    t.index ["phone_number"], name: "index_users_on_phone_number", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
   end

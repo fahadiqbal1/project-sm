@@ -22,16 +22,17 @@ gem 'passenger', group: :production
 
 # Soul Medicine Gems
 gem 'bootstrap', '~> 4.0.0.alpha6'
-# gem 'cancancan', '~> 1.10'
 gem 'devise'
 gem 'dotenv-rails', groups: [:development, :test]
 gem "econfig", require: "econfig/rails"
+gem 'font-awesome-sass', '~> 4.7.0'
 gem 'intl-tel-input-rails'
 gem 'sidekiq'
 gem 'sinatra', :require => false
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'tether-rails' #https://github.com/jakegavin/tether-rails
 gem 'twilio-ruby'
+gem 'textris'
 # End Soul Medicine Gems
 
 
