@@ -12,10 +12,10 @@
         <%= csrf_meta_tags %>
         
         <title>
-            <%= strip_tags(yield(:title)) + " – " if content_for?(:title) %> Soul Medicine
+            <%= strip_tags(yield(:title)) + " – " if content_for?(:title) %> <%= t('navbar.brand') %>
         </title>
     </head>
-    <body class="<%= controller_name %> <%= action_name %>">
+    <body class="<%= controller_name %> <%= action_name %> <%= locale %>">
         
         <%= yield %>
         

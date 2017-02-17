@@ -48,7 +48,11 @@ class User < ApplicationRecord
   end
   
   def send_otp_code
-    UserTexter.welcome_confirm(self).deliver
+    begin
+      UserTexter.welcome_confirm(self).deliver
+    rescue Twilio::REST::RequestError => e
+      errors.add(:phone_number, e.message )
+    end
   end
   
 end

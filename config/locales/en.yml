@@ -1,4 +1,42 @@
 en:
+  navbar:
+    brand: Soul Medicine
+    home: Home
+    ethos: Ethos
+    contribute: Contribute
+    courses: Courses
+    log_out: Log Out
+    confirm_phone: Confirm Phone
+    log_in: Log In
+    sign_up: Sign Up
+  # Home Page
+  home:
+    index:
+      main_title: Soul Medicine
+      sub_title: Brighten your day by learning something new.
+      main_description: A mental well-being programme that sends crowdsourced feel-good knowledge courses and quotes. Choose the languages (yes, you can sign up for more than one!) you want & the time that suits you to start receiving the messages!
+      action_item: Get Started
+      section:
+        how_it_works:
+          title: How It Works
+          sign_up: Sign Up
+          sign_up_description: We just need your phone number and your language to start sending you daily messages!
+          receive_sms: Recieve SMS
+          receive_sms_description: Everyday, at the time of your choosing, we will send you a SMS with a snippet of your course or quote and a link to the full version.
+          enjoy: Enjoy!
+          enjoy_description: Enjoy the content and be sure to send us your feedback or contribute in creating and translating new content
+  staticpage:
+    contribute:
+      title: Contribute
+    ethos:
+      title: Ethos
+  confirmation:
+    index:
+      title: Confirm your Phone
+    code_confirmed: Your phone has been confirmed
+    already_confirmed: You have already confirmed your phone
+    code_not_correct: Confirmation Code in Incorrect
+    phone_not_found: Phone Number not found
   activerecord:
     models:
       user: User
@@ -12,9 +50,6 @@ en:
         otp: Confirmation Code
         language: Native Language
   helpers:
-    placeholder:
-      user:
-        language: Your Native Language
     submit:
       user:
         create: Sign Up
@@ -27,21 +62,6 @@ en:
     sessions:
       new:
         title: Log In
-  home:
-    index:
-      title: Hello
-  staticpage:
-    contribute:
-      title: Contribute
-    ethos:
-      title: Ethos
   user_texter:
     welcome_confirm:
       message: Thank you for signing up to Soul Medicine! Here is your confirmation code
-  confirmation:
-    index:
-      title: Confirm your Phone
-    code_confirmed: Your phone has been confirmed
-    already_confirmed: You have already confirmed your phone
-    code_not_correct: Confirmation Code in Incorrect
-    phone_not_found: Phone Number not found

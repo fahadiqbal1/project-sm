@@ -16,6 +16,7 @@ class ConfirmationController < ApplicationController
           # Update user's otp_confirmed_at
           user.update( :otp_confirmed_at => Time.now )
           flash[:notice] = I18n.t 'confirmation.code_confirmed'
+          sign_in(user, scope: :user)
           redirect_to root_path
         else
           flash[:alert] = I18n.t 'confirmation.code_not_correct'

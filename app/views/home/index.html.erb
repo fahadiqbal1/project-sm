@@ -1,1 +1,57 @@
-<% provide(:show_title, nil ) %>
+<% content_for :header do %>
+    <header>
+        <div class="jumbotron home-page-jumbotron align-middle">
+            <h1 class="display-1 text-center"><%= t '.main_title' %></h1>
+            <p class="lead text-center"><%= t '.sub_title' %></p>
+            <hr class="my-4">
+            <p class="text-justify"><%= t '.main_description' %></p>
+            <p class="lead text-center">
+                <%= link_to(t('.action_item'), new_registration_path('user'), :class => 'btn btn-info btn-lg') %>
+            </p>
+        </div>
+    </header>
+<% end %>
+
+<section class="my-4">
+    <h3 class="my-3 text-center display-3"><%= t '.section.how_it_works.title' %></h3>
+    <div class="card-deck">
+      <div class="card">
+        <div class="card-icon text-center">
+            <span class="fa-stack fa-3x">
+              <%= icon("circle", "", class: "fa-stack-2x") %>
+              <%= icon("user-plus", "", class: "fa-stack-1x fa-inverse") %>
+            </span>
+        </div>
+        <div class="card-block">
+          <h4 class="card-title text-center"><%= t '.section.how_it_works.sign_up' %></h4>
+          <p class="card-text text-justify"><%= t '.section.how_it_works.sign_up_description' %></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon text-center">
+            <span class="fa-stack fa-3x">
+              <%= icon("circle", "", class: "fa-stack-2x") %>
+              <%= icon("envelope-open", "", class: "fa-stack-1x fa-inverse") %>
+            </span>
+        </div>
+        <div class="card-block">
+          <h4 class="card-title text-center"><%= t '.section.how_it_works.receive_sms' %></h4>
+          <p class="card-text text-justify"><%= t '.section.how_it_works.receive_sms_description' %></p>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-icon text-center">
+            <span class="fa-stack fa-3x">
+              <%= icon("circle", "", class: "fa-stack-2x") %>
+              <%= icon("smile-o", "", class: "fa-stack-1x fa-inverse") %>
+            </span>
+        </div>
+        <div class="card-block">
+          <h4 class="card-title text-center"><%= t '.section.how_it_works.enjoy' %></h4>
+          <p class="card-text text-justify"><%= t '.section.how_it_works.enjoy_description' %></p>
+        </div>
+      </div>
+    </div>
+    
+    <hr class="my-4">
+</section>

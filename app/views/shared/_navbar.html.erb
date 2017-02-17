@@ -2,22 +2,33 @@
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <a class="navbar-brand" href="#">Soul Medicine</a>
+  <%= link_to(t('navbar.brand'), root_path, :class => 'navbar-brand') %>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <%= navbar_link_to( "Home", root_path, :active_when => { :controller => "home" }) %>
-      <%= navbar_link_to( "Ethos", ethos_path, :active_when => { :action => "ethos" }) %>
-      <%= navbar_link_to( "Contribute", contribute_path, :active_when => { :action => "contribute" }) %>
+      <%= navbar_link_to( t('navbar.home'), root_path, :active_when => { :controller => "home" }) %>
+      <%= navbar_link_to( t('navbar.ethos'), ethos_path, :active_when => { :action => "ethos" }) %>
+      <%= navbar_link_to( t('navbar.contribute'), contribute_path, :active_when => { :action => "contribute" }) %>
+      <li class="nav-item "><a class="nav-link" href="#"><%= t('navbar.courses') %></a></li>
     </ul>
     <ul class="navbar-nav">
       <% if user_signed_in? %>
-        <%= navbar_link_to( "Log Out", destroy_user_session_path, :method => :delete) %>
+        <%= navbar_link_to( t('navbar.log_out'), destroy_user_session_path, :method => :delete) %>
       <% else %>
-        <%= navbar_link_to( "Confirm Phone", confirmation_index_path, :active_when => { :controller => "confirmation" }) %>
-        <%= navbar_link_to( "Log In", new_session_path('user'), :active_when => { :controller => "user/sessions" }) %>
-        <%= navbar_link_to( "Sign Up", new_registration_path('user'), :active_when => { :controller => "devise/registrations" }) %>
+        <%= navbar_link_to( t('navbar.confirm_phone'), confirmation_index_path, :active_when => { :controller => "confirmation" }) %>
+        <%= navbar_link_to( t('navbar.log_in'), new_session_path('user'), :active_when => { :controller => "user/sessions" }) %>
+        <%= navbar_link_to( t('navbar.sign_up'), new_registration_path('user'), :active_when => { :controller => "devise/registrations" }) %>
       <% end %>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarLanguage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="hidden-sm-up">Language</span> <%= icon('language') %>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarLanguage">
+          <%= link_to('English', url_for( :locale => 'en' ), class: 'dropdown-item') %>
+          <%= link_to('Français', url_for( :locale => 'fr' ), class: 'dropdown-item') %>
+          <%= link_to('العرب', url_for( :locale => 'ar' ), class: 'dropdown-item') %>
+        </div>
+      </li>
     </ul>
   </div>
 </nav>

@@ -1,0 +1,67 @@
+ar:
+  navbar:
+    brand: طب النفس
+    home: الصفحة الرئيسية
+    ethos: روح الشعب
+    contribute: تساهم
+    courses: الدورات
+    log_out: الخروج
+    confirm_phone: تأكيد الهاتف
+    log_in: تسجيل الدخول
+    sign_up: سجل
+  # Home Page
+  home:
+    index:
+      main_title: طب النفس
+      sub_title: سطع يومك تعلم شيء جديد
+      main_description: والعقلي برنامج الرفاه التي ترسل من حشد المصادر الشعور بالسعادة دورات المعرفة والاقتباس. اختر اللغات (نعم، يمكنك الاشتراك لأكثر من واحد!) تريد والوقت الذي يناسبك لبدء تلقي الرسائل!
+      action_item: البدء
+      section:
+        how_it_works:
+          title: كيف تعمل
+          sign_up: سجل
+          sign_up_description: نحن بحاجة فقط رقم هاتفك واللغة الخاصة بك لبدء إرسال رسائل إليك اليومية!
+          receive_sms: احصل على
+          receive_sms_description: كل يوم، في الوقت التي تختارها، وسوف نرسل لك رسالة قصيرة مع مقتطف من دراستك أو الاقتباس وتصل إلى النسخة الكاملة.
+          enjoy: استمتع!
+          enjoy_description: استمتع المحتوى والتأكد من أن ترسل لنا ملاحظاتك أو المساهمة في إنشاء وترجمة محتوى جديد
+  staticpage:
+    contribute:
+      title: تساهم
+    ethos:
+      title: روح الشعب
+  confirmation:
+    index:
+      title: تأكيد الهاتف الخاص بك
+    code_confirmed: وقد أكدت الهاتف
+    already_confirmed: كنت قد أكدت بالفعل الهاتف
+    code_not_correct: رمز التأكيد في غير صحيحة
+    phone_not_found: رقم الهاتف غير موجود
+  activerecord:
+    models:
+      user: المستعمل
+    attributes:
+      user:
+        phone_number_plausibility: يجب أن تكون صالحة
+        phone_number: رقم الهاتف
+        email: البريد الإلكتروني
+        password: كلمه السر
+        password_confirmation: تأكيد كلمة المرور
+        otp: تأكيد الكود
+        language: اللغة الأم
+  helpers:
+    submit:
+      user:
+        create: Sign Up
+      confirmation:
+        create: Confirm
+  devise:
+    registrations:
+      new:
+        title: اشترك للطب الروح
+    sessions:
+      new:
+        title: تسجيل الدخول
+  user_texter:
+    welcome_confirm:
+      message: شكرا لك على الاشتراك في الطب الروح! هنا هو رمز التأكيد الخاص بك

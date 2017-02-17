@@ -23,6 +23,7 @@ gem 'passenger', group: :production
 # Soul Medicine Gems
 gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'devise'
+gem 'devise-i18n'
 gem 'dotenv-rails', groups: [:development, :test]
 gem "econfig", require: "econfig/rails"
 gem 'font-awesome-sass', '~> 4.7.0'
