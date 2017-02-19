@@ -1,3 +1,30 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                     :integer          not null, primary key
+#  email                  :string           default("")
+#  phone_number           :string           default(""), not null
+#  encrypted_password     :string           default(""), not null
+#  language_id            :integer
+#  reset_password_token   :string
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  sign_in_count          :integer          default("0"), not null
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :inet
+#  last_sign_in_ip        :inet
+#  failed_attempts        :integer          default("0"), not null
+#  unlock_token           :string
+#  locked_at              :datetime
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  otp                    :string
+#  otp_timestamp          :datetime
+#  otp_confirmed_at       :datetime
+#  phone_dial_code        :integer          default("1")
+#
 require "test_helper"
 
 class UserTest < ActiveSupport::TestCase
@@ -5,6 +32,7 @@ class UserTest < ActiveSupport::TestCase
     user = User.new(
       :phone_number => "123456789",
       :phone_dial_code => 1,
+      :language_id => 1,
       :password => "test123"
     )
     assert user.valid?
@@ -27,7 +55,7 @@ class UserTest < ActiveSupport::TestCase
   end
   test "should not allow invalid phone_dial_code" do
     user = User.new(
-      :phone_number => "123456789",
+      :phone_number => "1913436758",
       :email => "test@example.com",
       :password => "test123",
       :phone_dial_code => "abc"

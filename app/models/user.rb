@@ -1,4 +1,30 @@
-# User Model
+# == Schema Information
+#
+# Table name: users
+#
+#  id                     :integer          not null, primary key
+#  email                  :string           default("")
+#  phone_number           :string           default(""), not null
+#  encrypted_password     :string           default(""), not null
+#  language_id            :integer
+#  reset_password_token   :string
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  sign_in_count          :integer          default("0"), not null
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :inet
+#  last_sign_in_ip        :inet
+#  failed_attempts        :integer          default("0"), not null
+#  unlock_token           :string
+#  locked_at              :datetime
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  otp                    :string
+#  otp_timestamp          :datetime
+#  otp_confirmed_at       :datetime
+#  phone_dial_code        :integer          default("1")
+#
 class User < ApplicationRecord
   devise :database_authenticatable, :lockable,
          :registerable, :recoverable, :rememberable, :trackable, :validatable
@@ -13,6 +39,7 @@ class User < ApplicationRecord
             :numericality => true
   validates :encrypted_password, :length => { :minimum => 6 }
   validates :phone_dial_code, :presence => true, :numericality => true
+  validate :language
   validate :phone_number_plausibility
 
   def to_s
@@ -25,6 +52,8 @@ class User < ApplicationRecord
 
   def normalized
     Phony.normalize("+#{phone_dial_code}#{phone_number}")
+  rescue
+    errors.add(:phone_dial_code, "invalid")
   end
 
   def active_for_authentication?

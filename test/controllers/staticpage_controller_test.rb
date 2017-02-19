@@ -1,7 +1,12 @@
 require "test_helper"
 
 class StaticpageControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
+  test "should get ethos page" do
+    get ethos_url
+    assert_response :success
+  end
+  test "should get contribute page" do
+    get contribute_url
+    assert_response :success
+  end
 end

@@ -11,6 +11,8 @@ module DeviseHelper
     </div>
     HTML
 
-    html.safe_join
+    sanitize html,
+             :tags => %w(div button),
+             :attributes => %w(type class data-dismiss)
   end
 end
