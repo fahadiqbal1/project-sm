@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class ConfirmationControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
@@ -10,5 +10,4 @@ class ConfirmationControllerTest < ActionDispatch::IntegrationTest
   #   get confirmation_create_url
   #   assert_response :success
   # end
-
 end

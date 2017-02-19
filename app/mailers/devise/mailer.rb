@@ -1,4 +1,5 @@
 if defined?(ActionMailer)
+  # Devise Mailer
   class Devise::Mailer < Devise.parent_mailer.constantize
     include Devise::Mailers::Helpers
 
