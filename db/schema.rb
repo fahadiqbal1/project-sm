@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170216110730) do
+ActiveRecord::Schema.define(version: 20170220155409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,11 +22,34 @@ ActiveRecord::Schema.define(version: 20170216110730) do
     t.datetime "updated_at",                null: false
   end
 
+  create_table "user_languages", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "language_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["language_id"], name: "index_user_languages_on_language_id", using: :btree
+    t.index ["user_id"], name: "index_user_languages_on_user_id", using: :btree
+  end
+
+  create_table "user_preferences", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "gender",               default: "N/A"
+    t.string   "country_of_origin"
+    t.string   "country_of_residence"
+    t.boolean  "consent",              default: false,     null: false
+    t.date     "age"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.string   "delivery_time",        default: "morning"
+    t.index ["user_id"], name: "index_user_preferences_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: ""
     t.string   "phone_number",           default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
-    t.integer  "language_id"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -44,11 +67,11 @@ ActiveRecord::Schema.define(version: 20170216110730) do
     t.datetime "otp_timestamp"
     t.datetime "otp_confirmed_at"
     t.integer  "phone_dial_code",        default: 1
-    t.index ["language_id"], name: "index_users_on_language_id", using: :btree
     t.index ["otp"], name: "index_users_on_otp", unique: true, using: :btree
     t.index ["phone_number"], name: "index_users_on_phone_number", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
   end
 
+  add_foreign_key "user_preferences", "users"
 end

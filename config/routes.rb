@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     root "home#index"
 
     resources :confirmation, :only => [:index, :create]
+    resources :user_preference, :only => [:index, :update], :path => "profile"
 
     get "/ethos" => "staticpage#ethos"
     get "/contribute" => "staticpage#contribute"

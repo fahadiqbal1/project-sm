@@ -6,16 +6,22 @@ class ConfirmationController < ApplicationController
     @user = User.new
   end
 
-  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
   def create
-    params = params[:confirmation]
-    user = User.find_by(:phone_number => params[:phone_number],
-                        :phone_dial_code => params[:phone_dial_code])
+    confirm_params = params[:confirmation]
+    user = User.find_by(:phone_number => confirm_params[:phone_number],
+                        :phone_dial_code => confirm_params[:phone_dial_code])
     if user.present?
-      if user.confirm_user(params[:confirmation][:otp])
+      if user.otp_confirmed?
+        flash[:alert] = I18n.t "confirmation.already_confirmed"
+        redirect_back(:fallback_location => root_path)
+      elsif user.otp.eql? confirm_params[:otp]
+        user.confirm_user
+        flash[:notice] = I18n.t "confirmation.code_confirmed"
         sign_in(user, :scope => :user)
-        redirect_to root_path
+        redirect_to user_preference_index_path
       else
+        flash[:alert] = I18n.t "confirmation.code_not_correct"
         redirect_back(:fallback_location => root_path)
       end
     else
@@ -23,4 +29,5 @@ class ConfirmationController < ApplicationController
       redirect_back(:fallback_location => root_path)
     end
   end
+  # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 end

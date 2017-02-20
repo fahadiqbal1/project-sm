@@ -19,6 +19,6 @@ class ApplicationController < ActionController::Base
 
   # Allow extra keys to be added to the User model
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, :keys => [:email, :language_id])
+    devise_parameter_sanitizer.permit(:sign_up, :keys => [:email, :language_ids]) # rubocop:disable Metrics/LineLength
   end
 end

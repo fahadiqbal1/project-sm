@@ -6,7 +6,6 @@
 #  email                  :string           default("")
 #  phone_number           :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
-#  language_id            :integer
 #  reset_password_token   :string
 #  reset_password_sent_at :datetime
 #  remember_created_at    :datetime
@@ -25,9 +24,9 @@
 #  otp_confirmed_at       :datetime
 #  phone_dial_code        :integer          default("1")
 #
+
 one:
   email: user1@example.com
-  language_id: 1
   phone_number: 552016572
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 #

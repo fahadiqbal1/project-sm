@@ -42,13 +42,13 @@ en:
       user: User
     attributes:
       user:
-        phone_number_plausibility: must be valid
+        phone_number_plausibility: must be a valid number
         phone_number: Phone Number
         email: Email
         password: Password
         password_confirmation: Password Confirmation
         otp: Confirmation Code
-        language: Native Language
+        language_ids: Native Language
   helpers:
     submit:
       user:

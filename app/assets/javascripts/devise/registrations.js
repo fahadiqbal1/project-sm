@@ -2,7 +2,7 @@
 $(document).on('turbolinks:load', function() {
 
     $("#user_phone_number,#confirmation_phone_number").intlTelInput({
-        formatOnInit: true,
+        formatOnDisplay: true,
         separateDialCode: true,
         preferredCountries: ["us","gb","af","sy"]
     });

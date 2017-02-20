@@ -1,0 +1,29 @@
+# == Schema Information
+#
+# Table name: user_preferences
+#
+#  id                   :integer          not null, primary key
+#  user_id              :integer
+#  gender               :string           default("N/A")
+#  country_of_origin    :string
+#  country_of_residence :string
+#  consent              :boolean          default("false"), not null
+#  age                  :date
+#  first_name           :string
+#  last_name            :string
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  delivery_time        :string           default("morning")
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+# column: value

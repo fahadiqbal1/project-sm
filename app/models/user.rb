@@ -6,7 +6,6 @@
 #  email                  :string           default("")
 #  phone_number           :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
-#  language_id            :integer
 #  reset_password_token   :string
 #  reset_password_sent_at :datetime
 #  remember_created_at    :datetime
@@ -29,9 +28,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :lockable,
          :registerable, :recoverable, :rememberable, :trackable, :validatable
 
-  belongs_to :language
+  has_one :user_preference, :dependent => :destroy
+  has_many :user_languages
+  has_many :languages, :through => :user_languages
 
-  before_create :create_otp_code
+  accepts_nested_attributes_for :user_preference, :allow_destroy => true
+  accepts_nested_attributes_for :user_languages, :allow_destroy => true
+
+  before_create :create_otp_code, :build_default_user_preference
   after_create :send_otp_code
 
   validates :phone_number,
@@ -39,7 +43,6 @@ class User < ApplicationRecord
             :numericality => true
   validates :encrypted_password, :length => { :minimum => 6 }
   validates :phone_dial_code, :presence => true, :numericality => true
-  validate :language
   validate :phone_number_plausibility
 
   def to_s
@@ -64,40 +67,29 @@ class User < ApplicationRecord
     super && otp_confirmed?
   end
 
-  protected
-
-  def confirm_user(otp_code)
-    rtn = false
-    if this.otp_confirmed?
-      flash[:alert] = I18n.t "confirmation.already_confirmed"
-    elsif otp_code.eql? this.otp
-      self.otp_confirmed_at = Time.now.utc
-      flash[:notice] = I18n.t "confirmation.code_confirmed"
-      rtn = true
-    else
-      flash[:alert] = I18n.t "confirmation.code_not_correct"
-    end
-    rtn
-  end
-
-  private
-
-  def phone_number_plausibility
-    valid = Phony.plausible?(normalized)
-    return unless valid
-    errors.add(
-      :phone_number,
-      I18n.t("activerecord.attributes.user.phone_number_plausibility")
-    )
+  def confirm_user
+    self.otp_confirmed_at = Time.now.utc
   end
 
   def otp_confirmed?
     otp_confirmed_at ? true : false
   end
 
+  private
+
+  def phone_number_plausibility
+    errors.add(:phone_number, I18n.t("activerecord.attributes.user.phone_number_plausibility")) unless Phony.plausible?(normalized) # rubocop:disable Metrics/LineLength
+  end
+
+  def build_default_user_preference
+    build_user_preference
+    true
+  end
+
   def create_otp_code
     self.otp = SecureRandom.base58(5)
     self.otp_timestamp = Time.now.utc
+    true
   end
 
   def send_otp_code

@@ -6,7 +6,6 @@
 #  email                  :string           default("")
 #  phone_number           :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
-#  language_id            :integer
 #  reset_password_token   :string
 #  reset_password_sent_at :datetime
 #  remember_created_at    :datetime
@@ -32,7 +31,6 @@ class UserTest < ActiveSupport::TestCase
     user = User.new(
       :phone_number => "123456789",
       :phone_dial_code => 1,
-      :language_id => 1,
       :password => "test123"
     )
     assert user.valid?
