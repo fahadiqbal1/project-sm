@@ -22,11 +22,27 @@
         <%= error_messages_for(@user_preference) %>
         <div class="tab-content">
             <div class="tab-pane active" id="required" role="tabpanel">
-                <div class="form-group row">
-                    <%= f.label :consent, :class => 'col-sm-3 col-form-label' %>
-                    <div class="col-sm-9">
-                        <%= f.check_box :consent, :required => true, :class => 'form-control' %>
+                <% f.fields_for :user, @user do |u| %>
+                    <div class="form-group row">
+                        <%= u.label :phone_number, :class => 'col-sm-3 col-form-label' %>
+                        <div class="col-sm-9">
+                            <%= u.text_field :phone_number, :required => false, :class => 'form-control' %>
+                        </div>
                     </div>
+                <% end %>
+
+                <div class="form-group row">
+                    <%= f.label :delivery_time, :class => 'col-sm-3 col-form-label' %>
+                    <div class="col-sm-9">
+                        <%= select(:user_preference, :delivery_time, [["Morning","morning"], ["Afternoon","afternoon"], ["Evening","evening"]], {}, {:class => 'form-control'}) %>
+                    </div>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <label class="form-check-label">
+                        <%= check_box(:user_preference, :consent, :required => true, :class => 'form-check-input') %>
+                        <%= t '.consent_text' %>
+                    </label>
                 </div>
             </div>
             <div class="tab-pane" id="profile" role="tabpanel">
@@ -87,6 +103,7 @@
                 Choose Your Courses
             </div>
         </div>
+        <%= f.submit :class => 'btn btn-primary btn-block'  %>
     </div>
 </div>
 <% end %>

@@ -5,6 +5,7 @@ en:
     ethos: Ethos
     contribute: Contribute
     courses: Courses
+    profile: Edit Profile
     log_out: Log Out
     confirm_phone: Confirm Phone
     log_in: Log In
@@ -29,6 +30,7 @@ en:
   user_preference:
     index:
       title: Edit Your Profile
+      consent_text: I CONSENT to Soul Medicine contacting me by text message, email, or any other form of delivery I have indicated. I will ensure that I keep Soul Medicine informed of my up to date mobile number at all times, or if the number is no longer in my possession.
   staticpage:
     contribute:
       title: Contribute
@@ -57,6 +59,8 @@ en:
     submit:
       user:
         create: Sign Up
+      user_preference:
+        update: Save Profile
       confirmation:
         create: Confirm
   devise:
