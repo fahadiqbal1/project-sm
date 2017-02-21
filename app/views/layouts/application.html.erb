@@ -5,15 +5,15 @@
 <%= yield :header %>
 
 <div class="container body-container">
-  
+
   <%= render("shared/page_header") %>
 
   <div class="content">
     <%= yield %>
   </div>
 
-  <%= render("shared/footer") %>
-
 </div>
+
+<%= render("shared/footer") %>
 
 <% parent_layout "base" %>
