@@ -15,6 +15,8 @@
       <% if user_signed_in? %>
         <%= navbar_link_to( t('navbar.profile'), user_preference_index_path, :active_when => { :controller => "user_preference" }) %>
         <%= navbar_link_to( t('navbar.log_out'), destroy_user_session_path, :method => :delete) %>
+      <% elsif admin_signed_in? %>
+        <%= navbar_link_to( t('navbar.log_out'), destroy_admin_session_path, :method => :delete) %>
       <% else %>
         <%= navbar_link_to( t('navbar.confirm_phone'), confirmation_index_path, :active_when => { :controller => "confirmation" }) %>
         <%= navbar_link_to( t('navbar.log_in'), new_session_path('user'), :active_when => { :controller => "user/sessions" }) %>

@@ -63,7 +63,7 @@ en:
         update: Save Profile
       confirmation:
         create: Confirm
-  devise:
+  users:
     registrations:
       new:
         title: Sign Up for Soul Medicine
