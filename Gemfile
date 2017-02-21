@@ -24,6 +24,7 @@ gem 'passenger', group: :production
 # Soul Medicine Gems
 gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'bootscale', :require => false
+gem 'country_select' # https://github.com/stefanpenner/country_select
 gem 'devise'
 gem 'devise-i18n'
 gem 'dotenv-rails', groups: [:development, :test]
@@ -32,6 +33,7 @@ gem 'font-awesome-sass', '~> 4.7.0'
 gem 'intl-tel-input-rails'
 gem 'meta-tags' # https://github.com/kpumuk/meta-tags
 gem 'marco-polo' # https://github.com/arches/marco-polo
+gem 'pickadate-rails' # https://github.com/veracross/pickadate-rails
 gem 'secure_headers', '~> 3.0' # https://github.com/twitter/secureheaders
 gem 'sidekiq'
 gem 'sinatra', :require => false

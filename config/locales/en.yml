@@ -25,6 +25,10 @@ en:
           receive_sms_description: Everyday, at the time of your choosing, we will send you a SMS with a snippet of your course or quote and a link to the full version.
           enjoy: Enjoy!
           enjoy_description: Enjoy the content and be sure to send us your feedback or contribute in creating and translating new content
+  #Profile Page
+  user_preference:
+    index:
+      title: Edit Your Profile
   staticpage:
     contribute:
       title: Contribute
