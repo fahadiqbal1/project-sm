@@ -59,7 +59,6 @@ en:
     submit:
       user:
         create: Sign Up
-      user_preference:
         update: Save Profile
       confirmation:
         create: Confirm

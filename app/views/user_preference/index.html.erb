@@ -1,11 +1,11 @@
 <% provide(:title, t('.title') ) %>
 
-<%= form_for(@user_preference, as: 'user_preference', url: user_preference_path(@user_preference.user_id), method: :patch) do |f| %>
+<%= form_for(@user, as: 'user', url: user_preference_path(@user), method: :patch) do |f| %>
 <div class="row">
     <div class="col-md-3">
-        <ul class="nav flex-column" role="tablist">
+        <ul class="nav nav-pills flex-sm-column" role="tablist">
           <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#required" role="tab">Required</a>
+            <a class="nav-link active" data-toggle="tab" href="#service" role="tab">Service</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#profile" role="tab">Profile</a>
@@ -19,20 +19,25 @@
         </ul>
     </div>
     <div class="col-md-9">
-        <%= error_messages_for(@user_preference) %>
+        <%= error_messages_for(@user) %>
         <div class="tab-content">
-            <div class="tab-pane active" id="required" role="tabpanel">
-                <% f.fields_for :user, @user do |u| %>
-                    <div class="form-group row">
-                        <%= u.label :phone_number, :class => 'col-sm-3 col-form-label' %>
-                        <div class="col-sm-9">
-                            <%= u.text_field :phone_number, :required => false, :class => 'form-control' %>
-                        </div>
-                    </div>
-                <% end %>
+            <div class="tab-pane fade show active" id="service" role="tabpanel">
+                <div class="form-group row">
+                    <%= f.label :phone_number, :class => 'col-sm-3 col-form-label' %>
+                    <div class="col-sm-9"><%= f.text_field :phone_number, :autofocus => true, :class => 'form-control' %></div>
+                    <%= f.hidden_field :phone_dial_code %>
+                </div>
 
                 <div class="form-group row">
-                    <%= f.label :delivery_time, :class => 'col-sm-3 col-form-label' %>
+                    <%= f.label :email, :class => 'col-sm-3 col-form-label' %>
+                    <div class="col-sm-9">
+                        <%= f.email_field :email, :required => false, :class => 'form-control' %>
+                        <p class="form-text text-muted">Optional</p>
+                    </div>
+                </div>
+        <%= f.fields_for :user_preference, @user.user_preference do |user_pref| %>
+                <div class="form-group row">
+                    <%= user_pref.label :delivery_time, :class => 'col-sm-3 col-form-label' %>
                     <div class="col-sm-9">
                         <%= select(:user_preference, :delivery_time, [["Morning","morning"], ["Afternoon","afternoon"], ["Evening","evening"]], {}, {:class => 'form-control'}) %>
                     </div>
@@ -45,61 +50,63 @@
                     </label>
                 </div>
             </div>
-            <div class="tab-pane" id="profile" role="tabpanel">
+            <div class="tab-pane fade" id="profile" role="tabpanel">
                 <div class="form-group row">
-                    <%= f.label :first_name, :class => 'col-sm-3 col-form-label' %>
+                    <%= user_pref.label :first_name, :class => 'col-sm-3 col-form-label' %>
                     <div class="col-sm-9">
-                        <%= f.text_field :first_name, :required => false, :class => 'form-control' %>
+                        <%= user_pref.text_field :first_name, :required => false, :class => 'form-control' %>
                         <p class="form-text text-muted">Optional</p>
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <%= f.label :last_name, :class => 'col-sm-3 col-form-label' %>
+                    <%= user_pref.label :last_name, :class => 'col-sm-3 col-form-label' %>
                     <div class="col-sm-9">
-                        <%= f.text_field :last_name, :required => false, :class => 'form-control' %>
+                        <%= user_pref.text_field :last_name, :required => false, :class => 'form-control' %>
                         <p class="form-text text-muted">Optional</p>
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <%= f.label :gender, :class => 'col-sm-3 col-form-label' %>
+                    <%= user_pref.label :gender, :class => 'col-sm-3 col-form-label' %>
                     <div class="col-sm-9">
-                        <%= select(:user_preference, :gender, [['Male', 'Male'], ['Female', 'Female'], ['Prefer Not To Say', 'N/A']], {}, {:class => 'form-control'}) %>
+                        <%= user_pref.select :gender,
+                                             [['Male', 'M'], ['Female', 'F'], ['Prefer Not To Say', 'N/A']],
+                                             {},
+                                             { :class => 'form-control' } %>
                         <p class="form-text text-muted">Optional</p>
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <%= f.label :country_of_origin, :class => 'col-sm-3 col-form-label' %>
+                    <%= user_pref.label :country_of_origin, :class => 'col-sm-3 col-form-label' %>
                     <div class="col-sm-9">
-                        <%= country_select(
-                                "user_preference",
-                                :country_of_origin,
-                                { priority_countries: ["AF", "SY", "IQ"], include_blank: true },
-                                { class: 'form-control', data: { attribute: "value" } }
+                        <%= user_pref.country_select(
+                            :country_of_origin,
+                            { priority_countries: ["AF", "SY", "IQ"], selected: @user.user_preference.country_of_origin },
+                            { class: 'form-control', data: { attribute: "value" } }
                         ) %>
                         <p class="form-text text-muted">Optional</p>
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <%= f.label :country_of_residence, :class => 'col-sm-3 col-form-label' %>
+                    <%= user_pref.label :country_of_residence, :class => 'col-sm-3 col-form-label' %>
                     <div class="col-sm-9">
-                        <%= country_select(
-                                "user_preference",
-                                :country_of_residence,
-                                { priority_countries: ["GB", "FR", "DE"], include_blank: true },
-                                { class: 'form-control', data: { attribute: "value" } }
+                        <%= user_pref.country_select(
+                            :country_of_residence,
+                            { priority_countries: ["GB", "FR", "DE"], include_blank: true, selected: @user.user_preference.country_of_residence },
+                            { class: 'form-control', data: { attribute: "value" } }
                         ) %>
                         <p class="form-text text-muted">Optional</p>
                     </div>
                 </div>
             </div>
-            <div class="tab-pane" id="general" role="tabpanel">
+            <div class="tab-pane fade" id="general" role="tabpanel">
                 General Fields
             </div>
-            <div class="tab-pane" id="courses" role="tabpanel">
+        <% end %>
+            <div class="tab-pane fade" id="courses" role="tabpanel">
                 Choose Your Courses
             </div>
         </div>
