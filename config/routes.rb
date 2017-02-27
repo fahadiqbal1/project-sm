@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   scope "(:locale)", :locale => /#{I18n.available_locales.join("|")}/ do
     devise_for :admins, :path_names => {
-      :sign_in => ""
+      :sign_in => "login"
     }
     devise_for :users, :controllers => {
       :sessions => "user/sessions"
@@ -21,5 +21,6 @@ Rails.application.routes.draw do
 
     get "/ethos" => "staticpage#ethos"
     get "/contribute" => "staticpage#contribute"
+    get "/privacy" => "staticpage#privacy"
   end
 end

@@ -34,6 +34,7 @@ gem 'intl-tel-input-rails'
 gem 'meta-tags' # https://github.com/kpumuk/meta-tags
 gem 'marco-polo' # https://github.com/arches/marco-polo
 gem 'pickadate-rails' # https://github.com/veracross/pickadate-rails
+gem 'redcarpet' # https://github.com/vmg/redcarpet
 gem 'secure_headers', '~> 3.0' # https://github.com/twitter/secureheaders
 gem 'sidekiq'
 gem 'sinatra', :require => false

@@ -6,4 +6,7 @@ class StaticpageController < ApplicationController
 
   def contribute
   end
+
+  def privacy
+  end
 end

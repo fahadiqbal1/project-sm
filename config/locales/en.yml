@@ -31,11 +31,82 @@ en:
     index:
       title: Edit Your Profile
       consent_text: I CONSENT to Soul Medicine contacting me by text message, email, or any other form of delivery I have indicated. I will ensure that I keep Soul Medicine informed of my up to date mobile number at all times, or if the number is no longer in my possession.
+  # Static Pages
   staticpage:
+    # Contribute Page
     contribute:
       title: Contribute
+    # Ethos Page
     ethos:
       title: Ethos
+    privacy:
+      title: Privacy Policy
+      policy_changes: |
+        ### History of changes
+
+        * March 15, 2017 - First Published
+      policy: |
+        This policy applies to all information collected or submitted on Soul Medicine’s website and any other devices and platforms. When we say “Soul Medicine,” “our,” “we,” or “us,” we’re talking about Soul Medicine. This Privacy Policy (“Privacy Policy”) applies to all of our apps, services, features, software, and website (together, “Services”) unless specified otherwise.
+
+        ### Information we collect
+
+        When creating an account, you will be asked for a phone number and password. The phone number is **only** used for delivering messages and the delivery only occurs **after** the number has been verified and confirmed, there is an optional email field with is **only** used for resetting passwords. At no point will your email or phone number be used for promotional or marketing purposes.
+
+        We also store any and all optional profile information you save in the profile page.
+
+        We use cookies on the site and similar tokens in the app to keep you logged in.
+
+        Like most websites and apps, we also store information through the use of software that may be transparent to users. For example, we may log your IP address and general information about your browser or device.
+
+        ### What do we use your information for?
+
+        We use the information we collect to operate and improve our website, apps, and customer support.
+
+        We do not share your personal information with outside parties except to the extent necessary to accomplish Soul Medicine's functionality.
+
+        ### How do we protect your information?
+
+        We implement a variety of security measures to help keep your information secure.
+
+        ### Do we use cookies?
+
+        Yes. Cookies are small files that a site or its service provider transfers to your computers hard drive through your Web browser (if you allow them) that enable the sites or service providers systems to recognize your browser and capture and remember certain information
+
+        We use cookies to help us remember your log in status and compile aggregate data about site traffic and site interaction so that we can offer better site experiences and tools in the future. We may contract with third-party service providers to assist us in better understanding our site visitors. These service providers are not permitted to use the information collected on our behalf except to help us conduct and improve our services.
+
+        If you prefer, you can choose to have your computer warn you each time a cookie is being sent, or you can choose to turn off all cookies via your browser settings. Like most websites, if you turn your cookies off, some of our services may not function properly.
+
+        ### Do we disclose any information to outside parties?
+
+        We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our website, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety. However, non-personally identifiable visitor information may be provided to other parties for marketing, advertising, or other uses.
+
+        ### Third party links
+
+        Occasionally, at our discretion, we may include or offer third party products or services on our website. These third party sites have separate and independent privacy policies. We therefore have no responsibility or liability for the content and activities of these linked sites. Nonetheless, we seek to protect the integrity of our site and welcome any feedback about these sites.
+
+        ### California Online Privacy Protection Act Compliance
+
+        Because we value your privacy we have taken the necessary precautions to be in compliance with the California Online Privacy Protection Act. We therefore will not distribute your personal information to outside parties without your consent.
+
+        As part of the California Online Privacy Protection Act, all users of our site may make any changes to their information at anytime by logging and going to the 'Edit Profile' page.
+
+        ### Children's Online Privacy Protection Act Compliance
+
+        We are in compliance with the requirements of COPPA (Childrens Online Privacy Protection Act), we do not collect any information from anyone under 13 years of age. Our website, products and services are all directed to people who are at least 13 years old or older.
+
+        ### Online Privacy Policy Only
+
+        This online privacy policy applies only to information collected through our website and not to information collected offline.
+
+        ### Your Consent
+
+        By using our site, you consent to our web site privacy policy.
+
+        ### Changes to our Privacy Policy
+
+        If we decide to change our privacy policy, we will post those changes on this page, send an email notifying you of any changes, and/or update the Privacy Policy modification date above.
+
+        ### Contacting Us
   confirmation:
     index:
       title: Confirm your Phone

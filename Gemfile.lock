@@ -266,6 +266,7 @@ GEM
     rb-inotify (0.9.8)
       ffi (>= 0.5.0)
     rdoc (4.3.0)
+    redcarpet (3.4.0)
     redis (3.3.3)
     render_anywhere (0.0.12)
       rails (>= 3.0.7)
@@ -404,6 +405,7 @@ DEPENDENCIES
   rack-livereload
   rails (~> 5.0)
   rails_12factor
+  redcarpet
   rubocop (>= 0.44.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
