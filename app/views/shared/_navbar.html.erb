@@ -10,6 +10,9 @@
       <%= navbar_link_to( t('navbar.ethos'), ethos_path, :active_when => { :action => "ethos" }) %>
       <%= navbar_link_to( t('navbar.contribute'), contribute_path, :active_when => { :action => "contribute" }) %>
       <%= navbar_link_to( t('navbar.courses'), courses_path, :active_when => { :controller => "courses" }) %>
+      <% if admin_signed_in? %>
+        <%= navbar_link_to( "Admins", admin_index_path, :active_when => { :controller => "courses" }) %>
+      <% end %>
     </ul>
     <ul class="navbar-nav">
       <% if user_signed_in? %>

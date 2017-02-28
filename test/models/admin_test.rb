@@ -22,6 +22,7 @@
 #  approver               :boolean          default("false"), not null
 #  superuser              :boolean          default("false"), not null
 #  admin                  :boolean          default("false"), not null
+#  is_active              :boolean          default("true"), not null
 #
 
 require "test_helper"

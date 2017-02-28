@@ -6,6 +6,7 @@
             <th>Sequence</th>
             <th>Active?</th>
             <th>Approved?</th>
+            <th># of Subjects</th>
             <th></th>
         </tr>
         <% @course.each do |c| %>
@@ -15,6 +16,7 @@
                 <td><%= c.sequential_id %></td>
                 <td><%= yesno(c.active) %></td>
                 <td><%= yesno(c.approved) %></td>
+                <td><%= c.subjects.count %></td>
                 <td>
                     <%= link_to "Edit", edit_course_path(c),
                         :class => "btn btn-sm btn-primary" %>
@@ -27,13 +29,13 @@
     </table>
 <% else %>
     <% @course.each do |c| %>
-<div class="card-columns">
-  <div class="card">
-    <div class="card-block">
-      <h4 class="card-title"><%= link_to c.name, c %></h4>
-      <p class="card-text"><%= c.description %></p>
-    </div>
-  </div>
-</div>
+        <div class="card-columns">
+          <div class="card">
+            <div class="card-block">
+              <h4 class="card-title"><%= link_to c.name, c %></h4>
+              <p class="card-text"><%= c.description %></p>
+            </div>
+          </div>
+        </div>
     <% end %>
 <% end %>

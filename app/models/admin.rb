@@ -22,6 +22,7 @@
 #  approver               :boolean          default("false"), not null
 #  superuser              :boolean          default("false"), not null
 #  admin                  :boolean          default("false"), not null
+#  is_active              :boolean          default("true"), not null
 #
 class Admin < ApplicationRecord
   # Include default devise modules. Others available are:
@@ -29,4 +30,20 @@ class Admin < ApplicationRecord
   devise :database_authenticatable, :lockable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :authentication_keys => [:email]
+
+  def active_for_authentication?
+    # Uncomment the below debug statement to view
+    # the properties of the returned self model values.
+    # logger.debug self.to_yaml
+
+    super && active?
+  end
+
+  def destroy
+    self.is_active = false
+  end
+
+  def active?
+    is_active ? true : false
+  end
 end

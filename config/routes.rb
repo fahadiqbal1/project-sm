@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resources :courses do
       resources :subjects
     end
+    resources :admin, :only => [:index, :edit, :update, :destroy]
 
     get "/ethos" => "staticpage#ethos"
     get "/contribute" => "staticpage#contribute"

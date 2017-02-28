@@ -39,6 +39,7 @@ class CoursesController < ApplicationController
 
     if @course.update_attributes(course_params)
       flash[:notice] = "Course was successfully updated."
+      redirect_to(@course)
     else
       render :action => "edit"
     end
