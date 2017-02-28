@@ -19,4 +19,8 @@ module ApplicationHelper
 
     sanitize markdown.render(text), :attributes => %w(type class data-dismiss)
   end
+
+  def yesno(x)
+    x ? "Yes" : "No"
+  end
 end

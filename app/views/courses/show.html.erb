@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-md-4">
+        <h3><%= @course.name %></h3>
+        <p><%= @course.description %></p>
+        <%= link_to "Back to Courses", courses_path %>
+    </div>
+    <div class="col-md-8">
+        <% if admin_signed_in? %>
+            <table class="table table-hover table-bordered">
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Sequence</th>
+                    <th>Active?</th>
+                    <th>Approved?</th>
+                    <th></th>
+                </tr>
+                <% @course.subjects.each do |s| %>
+                    <tr>
+                        <td><%= link_to s.name, course_subject_path(@course,s) %></td>
+                        <td><%= s.description %></td>
+                        <td><%= s.sequential_id %></td>
+                        <td><%= yesno(s.active) %></td>
+                        <td><%= yesno(s.approved) %></td>
+                        <td>
+                            <div class="btn-group btn-group-sm" role="group" aria-label="Actions">
+                                <%= link_to "Edit", edit_course_subject_path(:course_id => @course, :id => s),
+                                    :class => "btn btn-primary" %>
+                                <%= link_to "Remove", course_subject_path(:course_id => @course, :id => s), method: :delete,
+                                    data: { confirm: "Are you sure?" },
+                                    :class => "btn btn-danger" %>
+                            </div>
+                        </td>
+                    </tr>
+                <% end %>
+            </table>
+        <% else %>
+            <% @course.subjects.each do |s| %>
+                <div class="card-columns">
+                  <div class="card">
+                    <div class="card-block">
+                      <h4 class="card-title"><%= link_to s.name, course_subject_path(@course,s) %></h4>
+                      <p class="card-text"><%= s.description %></p>
+                    </div>
+                  </div>
+                </div>
+            <% end %>
+        <% end %>
+    </div>
+</div>

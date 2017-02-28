@@ -36,7 +36,9 @@ gem 'marco-polo' # https://github.com/arches/marco-polo
 gem 'pickadate-rails' # https://github.com/veracross/pickadate-rails
 gem 'redcarpet' # https://github.com/vmg/redcarpet
 gem 'secure_headers', '~> 3.0' # https://github.com/twitter/secureheaders
+gem 'sequenced' # https://github.com/djreimer/sequenced
 gem 'sidekiq'
+gem 'simple_form' # https://github.com/plataformatec/simple_form
 gem 'sinatra', :require => false
 gem 'sprockets-rails', :require => 'sprockets/railtie'
 gem 'tether-rails' #https://github.com/jakegavin/tether-rails

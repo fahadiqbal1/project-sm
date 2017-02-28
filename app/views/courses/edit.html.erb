@@ -1,0 +1,10 @@
+<h3>Edit <%= @course.name %> </h3>
+
+<%= simple_form_for @course do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description, as: :text %>
+  <%= f.input :sequential_id, label: "Order" %>
+  <%= f.input :active, as: :boolean, label: "Active?", disabled: !current_admin.superuser? %>
+  <%= f.input :approved, as: :boolean, label: "Approved?", disabled: !current_admin.approver? %>
+  <%= f.button :submit %>
+<% end %>

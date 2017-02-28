@@ -31,9 +31,12 @@ class User < ApplicationRecord
   has_one :user_preference, :dependent => :destroy
   has_many :user_languages
   has_many :languages, :through => :user_languages
+  has_many :user_courses
+  has_many :courses, :through => :user_courses
 
   accepts_nested_attributes_for :user_preference, :allow_destroy => true
   accepts_nested_attributes_for :user_languages, :allow_destroy => true
+  accepts_nested_attributes_for :user_courses, :allow_destroy => true
 
   before_create :create_otp_code, :build_default_user_preference
   after_create :send_otp_code

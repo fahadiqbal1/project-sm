@@ -18,6 +18,10 @@
 #  locked_at              :datetime
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  translator             :boolean          default("false"), not null
+#  approver               :boolean          default("false"), not null
+#  superuser              :boolean          default("false"), not null
+#  admin                  :boolean          default("false"), not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

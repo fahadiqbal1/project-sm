@@ -18,6 +18,9 @@ Rails.application.routes.draw do
 
     resources :confirmation, :only => [:index, :create]
     resources :user_preference, :only => [:index, :update], :path => "profile"
+    resources :courses do
+      resources :subjects
+    end
 
     get "/ethos" => "staticpage#ethos"
     get "/contribute" => "staticpage#contribute"
