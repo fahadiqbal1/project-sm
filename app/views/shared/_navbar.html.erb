@@ -11,7 +11,7 @@
       <%= navbar_link_to( t('navbar.contribute'), contribute_path, :active_when => { :action => "contribute" }) %>
       <%= navbar_link_to( t('navbar.courses'), courses_path, :active_when => { :controller => "courses" }) %>
       <% if admin_signed_in? %>
-        <%= navbar_link_to( "Admins", admin_index_path, :active_when => { :controller => "courses" }) %>
+        <%= navbar_link_to( "Admins", admin_index_path, :active_when => { :controller => "admin" }) %>
       <% end %>
     </ul>
     <ul class="navbar-nav">

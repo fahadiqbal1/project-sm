@@ -3,11 +3,14 @@ class AdminController < ApplicationController
   skip_before_action :authenticate_user!
   before_action :authenticate_admin!
 
+  add_breadcrumb "Admins", :admin_index_path
+
   def index
-    @admin = Admin.all
+    @admin = Admin.order(:is_active => :desc).all
   end
 
   def edit
+    add_breadcrumb "Edit", edit_admin_path
     @admin = Admin.find(params[:id])
   end
 

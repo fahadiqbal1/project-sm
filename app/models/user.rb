@@ -48,6 +48,8 @@ class User < ApplicationRecord
   validates :phone_dial_code, :presence => true, :numericality => true
   validate :phone_number_plausibility
 
+  scope :active, -> { where.not(:otp_confirmed_at => nil) }
+
   def to_s
     phone_number
   end

@@ -3,31 +3,32 @@ class CoursesController < ApplicationController
   skip_before_action :authenticate_user!
   before_action :authenticate_admin!, :except => [:show, :index]
 
+  add_breadcrumb "Courses", :courses_path
+
   def index
     @course = Course.all
-
-    respond_to do |wants|
-      wants.html # index.html.erb
-      wants.xml  { render :xml => @course }
-    end
+    add_breadcrumb "Add New", new_course_path if admin_signed_in?
   end
 
   def new
     @course = Course.new
+    add_breadcrumb "Add New", new_course_path
+  end
 
-    respond_to do |wants|
-      wants.html # new.html.erb
-      wants.xml  { render :xml => @course }
+  def create
+    @course = Course.new(course_params)
+
+    if @course.save
+      flash[:notice] = "Course was successfully created."
+      redirect_to(@course)
+    else
+      render :action => "new"
     end
   end
 
   def show
     @course = Course.find(params[:id])
-
-    respond_to do |wants|
-      wants.html # show.html.erb
-      wants.xml  { render :xml => @course }
-    end
+    add_breadcrumb @course.name, @course
   end
 
   def edit
@@ -45,9 +46,27 @@ class CoursesController < ApplicationController
     end
   end
 
+  def destroy
+    if current_admin.admin?
+      @course = Course.find(params[:id])
+      @course.destroy
+      flash[:notice] = "Course was successfully removed."
+    else
+      flash[:alert] = "You do not have permission to do that."
+    end
+
+    redirect_to(courses_url)
+  end
+
   private
 
   def course_params
-    params.require(:course).permit(:name, :description, :sequential_id)
+    params.require(:course).permit(
+      :name,
+      :description,
+      :sequential_id,
+      :active,
+      :approved
+    )
   end
 end

@@ -126,6 +126,15 @@ en:
         password_confirmation: Password Confirmation
         otp: Confirmation Code
         language_ids: Native Language
+      user_preference:
+        gender: Gender
+        age: Age
+        first_name: First Name
+        last_name: Last Name
+        consent: Consent
+        delivery_time: Message Delivery Time
+        country_of_origin: Country of Origin
+        country_of_residence: Country of Residence
   helpers:
     submit:
       user:

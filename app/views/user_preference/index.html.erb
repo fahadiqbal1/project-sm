@@ -1,6 +1,6 @@
 <% provide(:title, t('.title') ) %>
 
-<%= form_for(@user, as: 'user', url: user_preference_path(@user), method: :patch) do |f| %>
+<%= simple_form_for(@user, as: 'user', url: user_preference_path(@user), method: :patch, html: { multipart: false, novalidate: true } ) do |f| %>
 <div class="row">
     <div class="col-md-3">
         <ul class="nav nav-pills flex-sm-column" role="tablist">
@@ -39,13 +39,13 @@
                 <div class="form-group row">
                     <%= user_pref.label :delivery_time, :class => 'col-sm-3 col-form-label' %>
                     <div class="col-sm-9">
-                        <%= select(:user_preference, :delivery_time, [["Morning","morning"], ["Afternoon","afternoon"], ["Evening","evening"]], {}, {:class => 'form-control'}) %>
+                        <%= user_pref.select(:delivery_time, [["Morning","morning"], ["Afternoon","afternoon"], ["Evening","evening"]], {}, {:class => 'form-control'}) %>
                     </div>
                 </div>
 
                 <div class="form-check form-check-inline">
                     <label class="form-check-label">
-                        <%= check_box(:user_preference, :consent, :required => true, :class => 'form-check-input') %>
+                        <%= user_pref.check_box(:consent, :required => true, :class => 'form-check-input') %>
                         <%= t '.consent_text' %>
                     </label>
                 </div>
@@ -107,7 +107,22 @@
             </div>
         <% end %>
             <div class="tab-pane fade" id="courses" role="tabpanel">
-                Choose Your Courses
+               <%= f.association :courses,
+                    as: :check_boxes,
+                    collection: Course.active_and_approved.order(sequential_id: :asc),
+                    :label_method => lambda { |course| "#{course.name} | #{course.description}" },
+                    :boolean_style => :nested,
+                    :collection_wrapper_tag => :div,
+                    :collection_wrapper_class => 'form-check',
+                    :item_wrapper_class => 'form-check-label',
+                    :input_class => 'form-check-input'
+                %>
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" value="">
+                    Option one is this and that&mdash;be sure to include why it's great
+                  </label>
+                </div>
             </div>
         </div>
         <%= f.submit :class => 'btn btn-primary btn-block'  %>

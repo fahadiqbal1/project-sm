@@ -24,6 +24,7 @@ gem 'passenger', group: :production
 # Soul Medicine Gems
 gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'bootscale', :require => false
+gem "breadcrumbs_on_rails" # https://github.com/weppos/breadcrumbs_on_rails
 gem 'country_select' # https://github.com/stefanpenner/country_select
 gem 'devise'
 gem 'devise-i18n'

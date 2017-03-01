@@ -9,7 +9,7 @@
         <th></th>
     </tr>
     <% @admin.each do |a| %>
-        <tr>
+        <tr class="<%= a.active? ? '' : 'table-danger' %>">
             <td><%= link_to a.email, edit_admin_path(a) %></td>
             <td><%= yesno(a.translator) %></td>
             <td><%= yesno(a.approver) %></td>

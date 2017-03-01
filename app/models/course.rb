@@ -19,4 +19,8 @@ class Course < ApplicationRecord
   accepts_nested_attributes_for :user_courses, :allow_destroy => true
 
   validates_presence_of [:name, :description, :sequential_id]
+  validates :name, :uniqueness => true
+
+  scope :active, -> { where(:active => true) }
+  scope :active_and_approved, -> { where(:active => true, :approved => true) }
 end

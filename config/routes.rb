@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  require "sidekiq/web"
+
   scope "(:locale)", :locale => /#{I18n.available_locales.join("|")}/ do
     devise_for :admins, :path_names => {
       :sign_in => "login"
@@ -19,12 +21,16 @@ Rails.application.routes.draw do
     resources :confirmation, :only => [:index, :create]
     resources :user_preference, :only => [:index, :update], :path => "profile"
     resources :courses do
-      resources :subjects
+      resources :subjects, :only => [:show, :new, :edit, :update, :destroy]
     end
     resources :admin, :only => [:index, :edit, :update, :destroy]
 
     get "/ethos" => "staticpage#ethos"
     get "/contribute" => "staticpage#contribute"
     get "/privacy" => "staticpage#privacy"
+
+    authenticate :admin do
+      mount Sidekiq::Web => "/sidekiq"
+    end
   end
 end

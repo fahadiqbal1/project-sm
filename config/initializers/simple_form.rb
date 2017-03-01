@@ -14,7 +14,7 @@ SimpleForm.setup do |config|
     b.use :label, :class => "form-control-label"
 
     b.use :input, :class => "form-control"
-    b.use :error, :wrap_with => { :tag => "p", :class => "text-help" }
+    b.use :error, :wrap_with => { :tag => "p", :class => "form-control-feedback" }
     b.use :hint,  :wrap_with => { :tag => "p", :class => "text-muted" } # Don't use .text-help here, since this will apply the error color which we dont want for the hint
   end
 

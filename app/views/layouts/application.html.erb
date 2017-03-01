@@ -8,6 +8,12 @@
 
   <%= render("shared/page_header") %>
 
+  <div class="row">
+    <div class="col-md-6 offset-md-6">
+      <%= render_breadcrumbs :builder => BootstrapBreadcrumbsBuilder %>
+    </div>
+  </div>
+
   <div class="content">
     <%= yield %>
   </div>
