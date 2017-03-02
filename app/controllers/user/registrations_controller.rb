@@ -4,9 +4,13 @@ class User::RegistrationsController < Devise::RegistrationsController
   before_action :configure_account_update_params, :only => [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    add_breadcrumb(
+      t("users.registrations.new.title"),
+      new_user_registration_path
+    )
+    super
+  end
 
   # POST /resource
   # def create

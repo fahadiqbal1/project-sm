@@ -6,11 +6,11 @@
 
 <div class="container body-container">
 
-  <%= render("shared/page_header") %>
+  <%= render("shared/page_header") unless @disable_page_header %>
 
   <div class="row">
     <div class="col-md-6 offset-md-6">
-      <%= render_breadcrumbs :builder => BootstrapBreadcrumbsBuilder %>
+      <%= render_breadcrumbs :builder => BootstrapBreadcrumbsBuilder unless @disable_breadcrumbs %>
     </div>
   </div>
 

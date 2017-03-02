@@ -3,9 +3,10 @@ class User::SessionsController < Devise::SessionsController
   before_action :configure_sign_in_params, :only => [:create]
 
   # GET /resource/sign_in
-  # def new
-  #   super
-  # end
+  def new
+    add_breadcrumb t("users.sessions.new.title"), new_user_session_path
+    super
+  end
 
   # POST /resource/sign_in
   # def create

@@ -4,5 +4,6 @@ class HomeController < ApplicationController
 
   def index
     @disable_page_header = true
+    @disable_breadcrumbs = true
   end
 end

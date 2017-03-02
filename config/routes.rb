@@ -6,7 +6,8 @@ Rails.application.routes.draw do
       :sign_in => "login"
     }
     devise_for :users, :controllers => {
-      :sessions => "user/sessions"
+      :sessions => "user/sessions",
+      :registrations => "user/registrations"
     }, :path => "", :path_names => {
       :sign_in => "login",
       :sign_out => "logout",

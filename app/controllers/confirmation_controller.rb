@@ -3,6 +3,7 @@ class ConfirmationController < ApplicationController
   skip_before_action :authenticate_user!
 
   def index
+    add_breadcrumb t("confirmation.index.title"), confirmation_index_path
     @user = User.new
   end
 

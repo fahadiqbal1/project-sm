@@ -39,6 +39,18 @@ en:
       ways_to_contribute: Ways to Contribute
       ways_to_contribute_paragraph: |
         There are many ways to contribute to Soul Medicine
+      special_thanks_to: A Special Thanks To
+      twilio: Twilio
+      twilio_text: |
+        Twilio gave us a $500 credit to use as part of their **A Billion Messages for Good**. We are very grateful for their contribution.
+
+        You can learn more about their initiatives at [twilio.org](https://www.twilio.org/)
+      chayn: Chayn
+      chayn_text: |
+        Chayn is an award-winning, open-source project that leverages technology to empower women against violence and oppression so they can live happier and healthier lives.
+      empowerhack: EmpowerHack
+      empowerhack_text: |
+        EmpowerHack is a volunteer tech collective for refugee women and girls. It is where the initial work for Soul Medicine took place
     # Ethos Page
     ethos:
       title: Ethos

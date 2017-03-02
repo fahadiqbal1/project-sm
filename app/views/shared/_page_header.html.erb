@@ -1,8 +1,6 @@
-<% if !@disable_page_header %>
-  <div class="page-header">
-    <% if content_for?(:title) %>
-      <h1><%= content_for(:title) %></h1>
-      <%= content_for(:page_subhead) %>
-    <% end %>
-  </div>
-<% end %>
+<div class="page-header">
+  <% if content_for?(:title) %>
+    <h1><%= content_for(:title) %></h1>
+    <%= content_for(:page_subhead) %>
+  <% end %>
+</div>
