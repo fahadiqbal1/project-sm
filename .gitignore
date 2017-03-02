@@ -12,7 +12,6 @@
 !/log/.keep
 /tmp
 .idea/*
-LICENSE
 # config/database.yml
 # config/secrets.yml
 .vscode
