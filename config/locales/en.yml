@@ -36,9 +36,35 @@ en:
     # Contribute Page
     contribute:
       title: Contribute
+      ways_to_contribute: Ways to Contribute
+      ways_to_contribute_paragraph: |
+        There are many ways to contribute to Soul Medicine
     # Ethos Page
     ethos:
       title: Ethos
+      what_is_soul_medicine: What is Soul Medicine?
+      what_is_soul_medicine_paragraph: |
+        Soul Medicine is a mental well-being programme to help brighten the day of people experiencing loneliness and depression by sending crowdsourced feel-good knowledge courses and quotes.
+
+        Choose the languages (yes, you can sign up for more than one!) you want & the time that suits you.
+
+        More than 20 volunteers from CHAYN and EmpowerHack have created these 3 month courses. The year long duration of the course means that refugees can stay connected all year long, throughout their journey and not just at intermediate stops. If you’re not a refugee, you can still sign up to the course!
+
+        Soul Medicine already ran a pilot in 2015, receiving excellent feedback from abuse survivors. Encouraged by this, we decided to  We want everyone to know that you are not alone, that the mind is just as important as the body and that by treating it well, we can all start to feel better about ourselves - especially when it seems like we don’t have control over our lives.
+
+        Here’s what our hypothesis is based on:
+
+        **A motivational quote that is designed to work like a positive affirmation.** Positive affirmations, since first popularised by the French psychologist Emile Coué in the 1920s, have been used to change negative thought patterns and increase self-esteem with multiple studies showing that their use protects individuals against the negative impacts of stress.
+
+        **A crowdsourced human biology course.** Research has shown that learning has a positive impact on mental well-being by boosting confidence, building self-esteem and creating a sense of purpose. Human Biology was chosen to reflect the importance of the body’s relationship with the mind, deepening that connection of physical and spiritual mindfulness during the course.
+      what_sparked: What sparked Soul Medicine?
+      what_sparked_paragraph: |
+        Refugee mental health is seriously under supported by those trying to help them, mainly because needs like shelter, nutrition, and health are seen as top priority. A [recent report](http://www.bptk.de/aktuell/einzelseite/artikel/mindestens-d.html/) by Germany's chamber of psychotherapists found that half of refugees are experiencing psychological distress and mental illness resulting from trauma. One fifth of refugee children are also suffering from PTSD, according to the same report. But as more and more migrants and refugees arrive, support services are becoming increasingly stretched.
+
+        The more common mental health diagnoses associated with refugee populations include post-traumatic stress disorder (PTSD), major depression, generalized anxiety, panic attacks, adjustment disorder, and somatization. The incidence of diagnoses varies with different populations and their experiences. Different studies have shown rates of PTSD and major depression in settled refugees to range from 10-40% and 5-15%, respectively. Children and adolescents often have higher levels with various investigations revealing rates of PTSD from 50-90% and major depression from 6-40%. Risk factors for the development of mental health problems include the number of traumas, delayed asylum application process, detention, and the loss of culture and support systems.
+      like_what_you_see: Like what you see?
+      like_what_you_see_paragraph: |
+        We’re looking for volunteers and ambassadors who can help us build more courses, translate texts and help us spread the word about our service. Interested? Send an email to [team@soulmedicine.io](mailto:team@soulmedicine.io).
     privacy:
       title: Privacy Policy
       policy_changes: |
