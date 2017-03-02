@@ -59,11 +59,7 @@ class User < ApplicationRecord
   end
 
   def normalized
-    if phone_dial_code != 1
-      Phony.normalize("+#{phone_dial_code}#{phone_number}")
-    else
-      Phony.normalize(phone_number.to_s)
-    end
+    Phony.normalize("+#{phone_dial_code}#{phone_number}")
   rescue
     errors.add(:phone_dial_code, "invalid")
   end

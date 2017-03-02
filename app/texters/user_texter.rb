@@ -5,6 +5,6 @@ class UserTexter < Textris::Base
   def welcome_confirm(user)
     @user = user
 
-    text :to => @user.normalized
+    text :to => "+#{@user.normalized}"
   end
 end
