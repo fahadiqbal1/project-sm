@@ -59,7 +59,11 @@ class User < ApplicationRecord
   end
 
   def normalized
-    Phony.normalize("+#{phone_dial_code}#{phone_number}")
+    if phone_dial_code != 1
+      Phony.normalize("+#{phone_dial_code}#{phone_number}")
+    else
+      Phony.normalize(phone_number.to_s)
+    end
   rescue
     errors.add(:phone_dial_code, "invalid")
   end
@@ -101,5 +105,6 @@ class User < ApplicationRecord
     UserTexter.welcome_confirm(self).deliver
   rescue Twilio::REST::RequestError => e
     errors.add(:phone_number, e.message)
+    raise ActiveRecord::Rollback
   end
 end
