@@ -1,15 +1,15 @@
 # == Schema Information
 #
-# Table name: subjects
+# Table name: lesson_translations
 #
 #  id            :integer          not null, primary key
-#  name          :string           not null
-#  description   :text
+#  lesson_id     :integer
+#  language_id   :integer
+#  content       :text
+#  status        :integer          default("0")
 #  sequential_id :integer          not null
-#  course_id     :integer
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  status        :integer          default("0")
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
@@ -18,8 +18,8 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-# one: {}
-# # column: value
-# #
-# two: {}
+one: {}
+# column: value
+#
+two: {}
 # column: value

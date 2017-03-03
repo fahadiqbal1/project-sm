@@ -1,14 +1,12 @@
 # == Schema Information
 #
-# Table name: courses
+# Table name: course_languages
 #
-#  id            :integer          not null, primary key
-#  name          :string
-#  description   :text
-#  sequential_id :integer          not null
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  status        :integer          default("0")
+#  id          :integer          not null, primary key
+#  course_id   :integer
+#  language_id :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
@@ -16,9 +14,9 @@
 # This model initially had no columns defined. If you add columns to the
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
-# #
-# one: {}
+#
+one: {}
 # column: value
 #
-# two: {}
+two: {}
 # column: value

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170228183201) do
+ActiveRecord::Schema.define(version: 20170303172816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,14 +41,22 @@ ActiveRecord::Schema.define(version: 20170228183201) do
     t.index ["unlock_token"], name: "index_admins_on_unlock_token", unique: true, using: :btree
   end
 
+  create_table "course_languages", force: :cascade do |t|
+    t.integer  "course_id"
+    t.integer  "language_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["course_id"], name: "index_course_languages_on_course_id", using: :btree
+    t.index ["language_id"], name: "index_course_languages_on_language_id", using: :btree
+  end
+
   create_table "courses", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.integer  "sequential_id",                 null: false
-    t.boolean  "active",        default: false, null: false
-    t.boolean  "approved",      default: false, null: false
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.integer  "sequential_id",             null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "status",        default: 0
   end
 
   create_table "languages", force: :cascade do |t|
@@ -58,15 +66,36 @@ ActiveRecord::Schema.define(version: 20170228183201) do
     t.datetime "updated_at",                null: false
   end
 
+  create_table "lesson_translations", force: :cascade do |t|
+    t.integer  "lesson_id"
+    t.integer  "language_id"
+    t.text     "content"
+    t.integer  "status",        default: 0
+    t.integer  "sequential_id",             null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["language_id"], name: "index_lesson_translations_on_language_id", using: :btree
+    t.index ["lesson_id"], name: "index_lesson_translations_on_lesson_id", using: :btree
+  end
+
+  create_table "lessons", force: :cascade do |t|
+    t.string   "name",                      null: false
+    t.integer  "sequential_id",             null: false
+    t.integer  "subject_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "status",        default: 0
+    t.index ["subject_id"], name: "index_lessons_on_subject_id", using: :btree
+  end
+
   create_table "subjects", force: :cascade do |t|
-    t.string   "name",                          null: false
+    t.string   "name",                      null: false
     t.text     "description"
-    t.integer  "sequential_id",                 null: false
-    t.boolean  "active",        default: false, null: false
-    t.boolean  "approved",      default: false, null: false
+    t.integer  "sequential_id",             null: false
     t.integer  "course_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "status",        default: 0
     t.index ["course_id"], name: "index_subjects_on_course_id", using: :btree
   end
 
@@ -87,6 +116,19 @@ ActiveRecord::Schema.define(version: 20170228183201) do
     t.datetime "updated_at",  null: false
     t.index ["language_id"], name: "index_user_languages_on_language_id", using: :btree
     t.index ["user_id"], name: "index_user_languages_on_user_id", using: :btree
+  end
+
+  create_table "user_lesson_progressions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "lesson_id"
+    t.integer  "subject_id"
+    t.integer  "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_user_lesson_progressions_on_course_id", using: :btree
+    t.index ["lesson_id"], name: "index_user_lesson_progressions_on_lesson_id", using: :btree
+    t.index ["subject_id"], name: "index_user_lesson_progressions_on_subject_id", using: :btree
+    t.index ["user_id"], name: "index_user_lesson_progressions_on_user_id", using: :btree
   end
 
   create_table "user_preferences", force: :cascade do |t|

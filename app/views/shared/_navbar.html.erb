@@ -10,7 +10,7 @@
       <%= navbar_link_to( t('navbar.ethos'), ethos_path, :active_when => { :action => "ethos" }) %>
       <%= navbar_link_to( t('navbar.contribute'), contribute_path, :active_when => { :action => "contribute" }) %>
       <%= navbar_link_to( t('navbar.courses'), courses_path, :active_when => { :controller => "courses" }) %>
-      <% if admin_signed_in? %>
+      <% if admin_signed_in? && ( current_admin.approver? || current_admin.superuser? ) %>
         <%= navbar_link_to( "Admins", admin_index_path, :active_when => { :controller => "admin" }) %>
       <% end %>
     </ul>

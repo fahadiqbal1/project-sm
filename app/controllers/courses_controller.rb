@@ -65,8 +65,8 @@ class CoursesController < ApplicationController
       :name,
       :description,
       :sequential_id,
-      :active,
-      :approved
+      :status,
+      :language_ids => []
     )
   end
 end

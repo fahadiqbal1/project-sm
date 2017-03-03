@@ -4,16 +4,22 @@
             <div class="card-block">
                 <h4 class="card-title"><%= @course.name %></h4>
                 <p class="card-text"><%= @course.description %></p>
+                <dl class="row">
+                    <dt class="col-sm-6">Available In</dt>
+                    <dd class="col-sm-6">
+                        <% @course.languages.each do |lang| %>
+                            <span class='badge badge-label badge-primary'><%= lang.name %></span>
+                        <% end %>
+                    </dd>
+                </dl>
             </div>
             <% if admin_signed_in? %>
                 <div class="card-block">
                     <dl class="row">
-                        <dt class="col-sm-4">Active?</dt>
-                        <dd class="col-sm-8"><%= yesno(@course.active) %></dd>
-                        <dt class="col-sm-4">Approved?</dt>
-                        <dd class="col-sm-8"><%= yesno(@course.approved) %></dd>
-                        <dt class="col-sm-4">Display Order</dt>
-                        <dd class="col-sm-8"><%= @course.sequential_id %></dd>
+                        <dt class="col-sm-6">Status</dt>
+                        <dd class="col-sm-6"><%= @course.status.capitalize %></dd>
+                        <dt class="col-sm-6">Display Order</dt>
+                        <dd class="col-sm-6"><%= @course.sequential_id %></dd>
                     </dl>
                     <%= link_to sanitize("#{icon('plus')} Add New Subject"), new_course_subject_path(@course), :class => "btn btn-primary" %>
                 </div>
@@ -22,7 +28,7 @@
     </div>
     <div class="col-md-8">
         <div id="accordion" role="tablist" aria-multiselectable="true">
-            <% @course.subjects.each_with_index do |s, index| %>
+            <% @course.subjects.order(:sequential_id).each_with_index do |s, index| %>
                 <div class="card">
                     <div class="card-header" role="tab" id="heading<%= index %>">
                         <h5 class="mb-0">
@@ -30,8 +36,7 @@
                                 <%= s.name %>
                                 <% if admin_signed_in? %>
                                     <small class="pull-right">
-                                        <%= badge( s.active, "Active" ) %>
-                                        <%= badge( s.approved, "Approved" ) %>
+                                        <%= badge( s.status ) %>
                                     </small>
                                 <% end %>
                             </a>
@@ -55,8 +60,29 @@
                         <div class="card-block">
                             <h6 class="card-subtitle mb-2 text-muted">Lessons</h6>
                             <ul class="list-group list-group-flush">
-                                <%= link_to "Cras justo odio", "#", :class => "list-group-item list-group-item-action" %>
-                                <%= link_to "Vestibulum", "#", :class => "list-group-item list-group-item-action" %>
+                                <% if s.lessons.order(:sequential_id).each_with_index do |lesson, index| %>
+                                    <% if admin_signed_in? %>
+                                        <li class="list-group-item flex-column align-items-start">
+                                            <div class="d-flex w-100 justify-content-between">
+                                                <h5 class="mb-1"><%= lesson.name %></h5>
+                                                <small class="text-muted"><%= lesson.status.capitalize %></small>
+                                            </div>
+                                            <p class="mb-1">
+                                                <ul class="list-group list-group-flush">
+                                                    <% lesson.lesson_translations.each do |lt| %>
+                                                        <li class="list-group-item flex-column">
+                                                            <%= lt.language.name %> : <%= lt.status.capitalize %>
+                                                        </li>
+                                                    <% end %>
+                                                </ul>
+                                            </p>
+                                        </li>
+                                    <% else %>
+                                        <%= link_to lesson.name, "#", :class => "list-group-item list-group-item-action" %>
+                                    <% end %>
+                                <% end.empty? %>
+                                    <li class="list-group-item">No Lessons Active Yet.  <%= link_to "Add A New Lesson", "#" unless !admin_signed_in? %></li>
+                                <% end %>
                             </ul>
                         </div>
                     </div>

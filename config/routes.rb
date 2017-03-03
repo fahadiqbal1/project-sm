@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :user_lesson_progressions
+  resources :lessons
   require "sidekiq/web"
 
   scope "(:locale)", :locale => /#{I18n.available_locales.join("|")}/ do

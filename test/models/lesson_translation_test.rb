@@ -1,19 +1,20 @@
 # == Schema Information
 #
-# Table name: courses
+# Table name: lesson_translations
 #
 #  id            :integer          not null, primary key
-#  name          :string
-#  description   :text
+#  lesson_id     :integer
+#  language_id   :integer
+#  content       :text
+#  status        :integer          default("0")
 #  sequential_id :integer          not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  status        :integer          default("0")
 #
 
 require "test_helper"
 
-class CourseTest < ActiveSupport::TestCase
+class LessonTranslationTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

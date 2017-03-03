@@ -4,7 +4,17 @@
   <%= f.input :name %>
   <%= f.input :description, as: :text %>
   <%= f.input :sequential_id, label: "Order" %>
-  <%= f.input :active, as: :boolean, label: "Active?", disabled: !current_admin.superuser? %>
-  <%= f.input :approved, as: :boolean, label: "Approved?", disabled: !current_admin.approver? %>
+  <%= f.association :languages,
+        as: :check_boxes,
+        :boolean_style => :nested,
+        :collection_wrapper_tag => :div,
+        :collection_wrapper_class => 'form-check',
+        :item_wrapper_class => 'form-check-label',
+        :input_class => 'form-check-input' %>
+  <%= f.input :status,
+    collection: Course.statuses.keys,
+    :label_method => lambda { |status| status.capitalize },
+    :disabled => [('approved' unless current_admin.approver?),('active' unless current_admin.superuser?)],
+    :include_blank => false %>
   <%= f.button :submit %>
 <% end %>
