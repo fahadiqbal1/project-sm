@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   resources :user_lesson_progressions
-  resources :lessons
   require "sidekiq/web"
 
   scope "(:locale)", :locale => /#{I18n.available_locales.join("|")}/ do
@@ -24,7 +23,11 @@ Rails.application.routes.draw do
     resources :confirmation, :only => [:index, :create]
     resources :user_preference, :only => [:index, :update], :path => "profile"
     resources :courses do
-      resources :subjects, :only => [:show, :new, :edit, :update, :destroy]
+      resources :subjects, :only => [:show, :new, :edit, :update, :destroy] do
+        resources :lessons, :only => [:show, :new, :edit, :update, :destroy] do
+          resources :lesson_translations, :except => [:index], :path => "translation"
+        end
+      end
     end
     resources :admin, :only => [:index, :edit, :update, :destroy]
 
