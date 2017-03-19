@@ -22,6 +22,7 @@ class Course < ApplicationRecord
 
   accepts_nested_attributes_for :user_courses, :allow_destroy => true
   accepts_nested_attributes_for :course_languages, :allow_destroy => true
+  accepts_nested_attributes_for :subjects, :allow_destroy => true
 
   validates_presence_of [:name, :description, :sequential_id, :status]
   validates :name, :uniqueness => true

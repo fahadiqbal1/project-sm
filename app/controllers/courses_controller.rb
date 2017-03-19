@@ -33,6 +33,8 @@ class CoursesController < ApplicationController
 
   def edit
     @course = Course.find(params[:id])
+    add_breadcrumb @course.name, course_path(@course)
+    add_breadcrumb "Edit", edit_course_path(@course)
   end
 
   def update

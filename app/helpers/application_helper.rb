@@ -22,4 +22,15 @@ module ApplicationHelper
   def yesno(x)
     x ? "Yes" : "No"
   end
+
+  def object_status(obj)
+    case obj.status
+    when "inactive"
+      "danger"
+    when "approved"
+      "warning"
+    when "active"
+      "success"
+    end
+  end
 end

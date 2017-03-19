@@ -23,9 +23,9 @@ Rails.application.routes.draw do
     resources :confirmation, :only => [:index, :create]
     resources :user_preference, :only => [:index, :update], :path => "profile"
     resources :courses do
-      resources :subjects, :only => [:show, :new, :edit, :update, :destroy] do
-        resources :lessons, :only => [:show, :new, :edit, :update, :destroy] do
-          resources :lesson_translations, :except => [:index], :path => "translation"
+      resources :subjects, :only => [:show, :new, :create, :edit, :update, :destroy] do
+        resources :lessons, :only => [:show, :new, :create, :edit, :update, :destroy] do
+          resources :lesson_translations, :only => [:show, :edit, :update, :destroy], :path => "translation"
         end
       end
     end

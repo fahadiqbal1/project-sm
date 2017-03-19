@@ -1,5 +1,68 @@
+<ul class="list-unstyled subject-tree">
+    <% @course.subjects.order(:sequential_id).each_with_index do |s, index| %>
+        <li class="tree-item">
+            <span class="tree-toggle"><%= icon('plus') %></span> <span class="text-<%= object_status(s) %>"><%= s.name %></span>
+            <span class="item-actions">
+                <%= link_to sanitize("#{icon('edit')} Edit Subject"), edit_course_subject_path(:course_id => @course, :id => s),
+                        :class => "card-link" %>
+                <%= link_to sanitize("#{icon('trash')} Remove Subject"), course_subject_path(:course_id => @course, :id => s), method: :delete,
+                    data: { confirm: "Are you sure?" },
+                    :class => "card-link" unless !current_admin.superuser? %>
+            </span>
+            <ul class="tree">
+                <% if s.lessons.order(:sequential_id).each_with_index do |lesson, index| %>
+                    <li class="tree-item">
+                        <span class="tree-toggle"><%= icon('plus') %></span>
+                        <span class="text-<%= object_status(lesson) %>"><%= lesson.name %></span>
+                        <div class="item-actions" role="group">
+                            <%= link_to sanitize("#{icon('edit')} Edit Lesson"),
+                                    edit_course_subject_lesson_path(
+                                        :course_id => @course,
+                                        :subject_id => s,
+                                        :id => lesson
+                                    ),
+                                    :class => "card-link" %>
+                            <%= link_to sanitize("#{icon('trash')} Remove Lesson"),
+                                course_subject_lesson_path(
+                                    :course_id => @course,
+                                    :subject_id => s,
+                                    :id => lesson
+                                ), method: :delete,
+                                data: { confirm: "Are you sure?" },
+                                :class => "card-link" unless !current_admin.superuser? %>
+                        </div>
+                        <ul class="tree">
+                            <% lesson.lesson_translations.each do |lt| %>
+                                <li class="tree-item">
+                                    <span class="text-<%= object_status(lt) %>">
+                                        <%= lt.language.name %> : <%= lt.status.capitalize %>
+                                    </span>
+                                    <span class="item-actions">
+                                        <%= link_to sanitize(icon('edit')),
+                                            edit_course_subject_lesson_lesson_translation_path(
+                                                :course_id => @course,
+                                                :subject_id => s,
+                                                :lesson_id => lesson,
+                                                :id => lt
+                                            ), :class => "card-link" %>
+                                        <%= link_to sanitize(icon('trash')), course_subject_path(:course_id => @course, :id => s), method: :delete,
+                                            data: { confirm: "Are you sure?" },
+                                            :class => "card-link" unless !current_admin.superuser? %>
+                                    </span>
+                                </li>
+                            <% end %>
+                        </ul>
+                    </li>
+                <% end.empty? %>
+                    <li>No Lessons</li>
+                <% end %>
+                <li><%= link_to "Add A New Lesson", new_course_subject_lesson_path(@course, s) unless !admin_signed_in? %></li>
+            </ul>
+        </li>
+    <% end %>
+</ul>
 
-<div id="accordion" role="tablist" aria-multiselectable="true">
+<div id="accordion" class="invisible" role="tablist" aria-multiselectable="true">
     <% @course.subjects.order(:sequential_id).each_with_index do |s, index| %>
         <div class="card">
             <div class="card-header" role="tab" id="heading<%= index %>">
@@ -57,65 +120,3 @@
         </div>
     <% end %>
 </div>
-
-<ul class="list-unstyled subject-tree">
-    <% @course.subjects.order(:sequential_id).each_with_index do |s, index| %>
-        <li class="tree-item">
-            <span class="tree-toggle"><%= icon('plus') %></span> <%= s.name %>
-            <span class="item-actions">
-                <%= link_to sanitize("#{icon('edit')} Edit Subject"), edit_course_subject_path(:course_id => @course, :id => s),
-                        :class => "card-link" %>
-                <%= link_to sanitize("#{icon('trash')} Remove Subject"), course_subject_path(:course_id => @course, :id => s), method: :delete,
-                    data: { confirm: "Are you sure?" },
-                    :class => "card-link" unless !current_admin.superuser? %>
-            </span>
-            <ul class="tree">
-                <% if s.lessons.order(:sequential_id).each_with_index do |lesson, index| %>
-                    <li class="tree-item">
-                        <span class="tree-toggle"><%= icon('plus') %></span>
-                        <div class="item-actions" role="group">
-                            <%= link_to sanitize("#{icon('edit')} Edit"),
-                                    edit_course_subject_lesson_path(
-                                        :course_id => @course,
-                                        :subject_id => s,
-                                        :id => lesson
-                                    ),
-                                    :class => "card-link" %>
-                            <%= link_to sanitize("#{icon('trash')} Remove"),
-                                course_subject_lesson_path(
-                                    :course_id => @course,
-                                    :subject_id => s,
-                                    :id => lesson
-                                ), method: :delete,
-                                data: { confirm: "Are you sure?" },
-                                :class => "card-link" unless !current_admin.superuser? %>
-                        </div>
-                        <%= lesson.name %>
-                        <ul class="tree">
-                            <% lesson.lesson_translations.each do |lt| %>
-                                <li class="tree-item">
-                                    <%= lt.language.name %> : <%= lt.status.capitalize %>
-                                    <span class="item-actions">
-                                        <%= link_to sanitize(icon('edit')),
-                                            edit_course_subject_lesson_lesson_translation_path(
-                                                :course_id => @course,
-                                                :subject_id => s,
-                                                :lesson_id => lesson,
-                                                :id => lt
-                                            ), :class => "card-link" %>
-                                        <%= link_to sanitize(icon('trash')), course_subject_path(:course_id => @course, :id => s), method: :delete,
-                                            data: { confirm: "Are you sure?" },
-                                            :class => "card-link" unless !current_admin.superuser? %>
-                                    </span>
-                                </li>
-                            <% end %>
-                        </ul>
-                    </li>
-                <% end.empty? %>
-                    <li>No Lessons</li>
-                <% end %>
-                <li><%= link_to "Add A New Lesson", "#" unless !admin_signed_in? %></li>
-            </ul>
-        </li>
-    <% end %>
-</ul>

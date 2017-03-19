@@ -54,6 +54,10 @@ class LessonTranslationsController < ApplicationController
   end
 
   def lesson_translation_params
-    params.fetch(:lesson_translation, {})
+    params.require(:lesson_translation).permit(
+      :content,
+      :sequential_id,
+      :status
+    )
   end
 end

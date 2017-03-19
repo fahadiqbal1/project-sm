@@ -1,4 +1,8 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, @lesson.name ) %>
 
-<%= link_to 'Edit', edit_lesson_path(@lesson) %> |
-<%= link_to 'Back', lessons_path %>
+<% @lesson.lesson_translations.each do |translation| %>
+  <div class = <%= "ar" if translation.language.name == 'العربية' %>>
+    <h3><%= translation.language.name %></h3>
+    <p><%= translation.content %></p>
+  </div>
+<% end %>

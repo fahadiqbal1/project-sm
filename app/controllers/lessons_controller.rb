@@ -10,11 +10,23 @@ class LessonsController < ApplicationController
 
   # GET /lessons/new
   def new
+    @course = Course.find(params[:course_id])
+    @subject = @course.subjects.find_by(:sequential_id => params[:subject_id])
     @lesson = Lesson.new
+    add_breadcrumb @course.name, @course
+    add_breadcrumb @subject.name, @course
+    add_breadcrumb "Add New", new_course_subject_lesson_path
   end
 
   # GET /lessons/1/edit
   def edit
+    add_breadcrumb @course.name, @course
+    add_breadcrumb @subject.name, @course
+    add_breadcrumb @lesson.name, edit_course_subject_lesson_path(
+      :course_id => @course,
+      :subject_id => @subject,
+      :id => @lesson
+    )
   end
 
   # POST /lessons
@@ -22,16 +34,20 @@ class LessonsController < ApplicationController
     @lesson = Lesson.new(lesson_params)
 
     if @lesson.save
-      redirect_to @lesson, :notice => "Lesson was successfully created."
+      redirect_to course_path(
+        :id => params[:course_id]
+      ), :notice => "Lesson was successfully created."
     else
-      render :new
+      redirect_back(:fallback_location => root_path)
     end
   end
 
   # PATCH/PUT /lessons/1
   def update
     if @lesson.update(lesson_params)
-      redirect_to @lesson, :notice => "Lesson was successfully updated."
+      redirect_to course_path(
+        :id => params[:course_id]
+      ), :notice => "Lesson was successfully updated."
     else
       render :edit
     end
@@ -40,19 +56,28 @@ class LessonsController < ApplicationController
   # DELETE /lessons/1
   def destroy
     @lesson.destroy
-    redirect_to lessons_url, :notice => "Lesson was successfully destroyed."
+    redirect_to course_path(
+      :id => params[:course_id]
+    ), :notice => "Lesson was successfully destroyed."
   end
 
   private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_lesson
-    @lesson = Lesson.find(params[:id])
+    @course = Course.find(params[:course_id])
+    @subject = @course.subjects.find_by(:sequential_id => params[:subject_id])
+    @lesson = @subject.lessons.find_by(:sequential_id => params[:id])
   end
 
   # Never trust parameters from the scary internet,
   # only allow the white list through.
   def lesson_params
-    params.fetch(:lesson, {})
+    params.require(:lesson).permit(
+      :name,
+      :sequential_id,
+      :status,
+      :subject_id
+    )
   end
 end

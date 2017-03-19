@@ -11,10 +11,10 @@
         <% @course.order(:sequential_id).each do |c| %>
             <tr>
                 <td><%= link_to c.name, c %></td>
-                <td><%= c.description %></td>
-                <td><%= c.sequential_id %></td>
-                <td><%= c.status.capitalize %></td>
-                <td><%= c.subjects.count %></td>
+                <td><%= link_to c.description, c %></td>
+                <td><%= link_to c.sequential_id, c %></td>
+                <td><%= link_to c.status.capitalize, c %></td>
+                <td><%= link_to c.subjects.count, c %></td>
                 <td>
                     <%= link_to "Edit", edit_course_path(c),
                         :class => "btn btn-sm btn-primary" %>
@@ -25,10 +25,15 @@
                 </td>
             </tr>
         <% end %>
+        <tr>
+            <td colspan="6">
+                <%= link_to "Add New", new_course_path, :class => "btn btn-block btn-info" %>
+            </td>
+        </tr>
     </table>
 <% else %>
     <div class="card-columns">
-        <% @course.order(:sequential_id).each do |c| %>
+        <% @course.active.order(:sequential_id).each do |c| %>
             <div class="card">
                 <div class="card-block">
                     <h4 class="card-title"><%= link_to c.name, c %></h4>

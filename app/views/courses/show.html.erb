@@ -21,7 +21,8 @@
                         <dt class="col-sm-6">Display Order</dt>
                         <dd class="col-sm-6"><%= @course.sequential_id %></dd>
                     </dl>
-                    <%= link_to sanitize("#{icon('plus')} Add New Subject"), new_course_subject_path(@course), :class => "btn btn-primary" %>
+                    <%= link_to sanitize("#{icon('plus')} Add New Subject"), new_course_subject_path(@course), :class => "btn btn-success" %>
+                    <%= link_to sanitize("#{icon('edit')} Edit Course"), edit_course_path(@course), :class => "btn btn-primary" %>
                 </div>
             <% end %>
         </div>

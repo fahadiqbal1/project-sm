@@ -18,6 +18,9 @@ class Subject < ApplicationRecord
 
   enum :status => [:inactive, :approved, :active]
 
+  accepts_nested_attributes_for :course, :allow_destroy => true
+  accepts_nested_attributes_for :lessons, :allow_destroy => true
+
   # Automatically use the sequential ID in URLs
   def to_param
     sequential_id.to_s
