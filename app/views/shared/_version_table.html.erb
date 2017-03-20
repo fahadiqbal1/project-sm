@@ -17,7 +17,7 @@
         </thead>
         <tbody>
             <% obj.versions.each do |version| %>
-                <% version.changeset.each do |column, change| next if column == 'updated_at' %>
+                <% version.changeset.each do |column, change| next if column.match(/_id|_at|id/) %>
                     <tr>
                         <td><%= version.created_at %></td>
                         <td><%= version.event.capitalize %></td>
