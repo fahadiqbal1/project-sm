@@ -6,6 +6,13 @@ class LessonsController < ApplicationController
 
   # GET /lessons/1
   def show
+    add_breadcrumb @course.name, @course
+    add_breadcrumb @subject.name, @course
+    add_breadcrumb @lesson.name, course_subject_lesson_path(
+      :course_id => @course,
+      :subject_id => @subject,
+      :id => @lesson
+    )
   end
 
   # GET /lessons/new
@@ -38,7 +45,10 @@ class LessonsController < ApplicationController
         :id => params[:course_id]
       ), :notice => "Lesson was successfully created."
     else
-      redirect_back(:fallback_location => root_path)
+      redirect_back(
+        :fallback_location => root_path,
+        :error => @lesson.errors.full_messages.join(", ")
+      )
     end
   end
 

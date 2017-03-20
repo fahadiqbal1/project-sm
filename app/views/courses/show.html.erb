@@ -26,6 +26,16 @@
                 </div>
             <% end %>
         </div>
+        <% if admin_signed_in? %>
+            <div class="card card-outline-info mb-3 text-center">
+                <h6 class="card-title">Key</h6>
+                <p class="card-text">
+                    <span class="text-success">Green = Active and available</span> <br>
+                    <span class="text-warning">Yellow = Approved, pending activation</span> <br>
+                    <span class="text-danger">Red = Inactive</span> <br>
+                </p>
+            </div>
+        <% end %>
     </div>
     <div class="col-md-8">
         <% if admin_signed_in? %>

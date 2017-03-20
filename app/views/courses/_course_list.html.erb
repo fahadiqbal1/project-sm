@@ -1,6 +1,6 @@
 
 <div id="accordion" role="tablist" aria-multiselectable="true">
-    <% @course.subjects.order(:sequential_id).each_with_index do |s, index| %>
+    <% @course.subjects.active.order(:sequential_id).each_with_index do |s, index| %>
         <div class="card">
             <div class="card-header" role="tab" id="heading<%= index %>">
                 <h5 class="mb-0">
@@ -16,11 +16,11 @@
                 <div class="card-block">
                     <h6 class="card-subtitle mb-2 text-muted">Lessons</h6>
                     <ul class="list-group list-group-flush">
-                        <% if s.lessons.order(:sequential_id).each_with_index do |lesson, index| %>
+                        <% if s.lessons.active.order(:sequential_id).each_with_index do |lesson, index| %>
                                 <%= link_to lesson.name,
                                     course_subject_lesson_path(
-                                        :course_id => @course.id,
-                                        :subject_id => s.id,
+                                        :course_id => @course,
+                                        :subject_id => s,
                                         :id => lesson
                                     ),
                                     :class => "list-group-item list-group-item-action" %>

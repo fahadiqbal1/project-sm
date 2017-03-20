@@ -2,6 +2,7 @@
 class UserPreferenceController < ApplicationController
   def index
     @user = current_user
+    add_breadcrumb "Edit Your Profile", user_preference_index_path
   end
 
   def update

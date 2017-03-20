@@ -20,7 +20,10 @@ class Lesson < ApplicationRecord
 
   validates :name,
             :uniqueness => { :scope => :subject }
-  validates :sequential_id, :presence => true, :numericality => true
+  validates :sequential_id,
+            :presence => true,
+            :numericality => true,
+            :uniqueness => { :scope => :subject }
   validates :subject_id, :presence => true, :numericality => true
 
   before_create :build_default_translations

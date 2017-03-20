@@ -1,4 +1,4 @@
-<%= simple_form_for([:course, :subject, :lesson, @lesson_translation]) do |f| %>
+<%= simple_form_for([@course, @subject, @lesson, @lesson_translation]) do |f| %>
   <%= f.error_notification %>
 
   <%= f.input :content, as: :text %>

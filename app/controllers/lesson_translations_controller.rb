@@ -49,8 +49,13 @@ class LessonTranslationsController < ApplicationController
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_lesson_translation
-    @lesson_translation = LessonTranslation.find(params[:id])
+  def set_lesson_translation # rubocop:disable Metrics/AbcSize
+    @course = Course.find(params[:course_id])
+    @subject = @course.subjects.find_by(:sequential_id => params[:subject_id])
+    @lesson = @subject.lessons.find_by(:sequential_id => params[:lesson_id])
+    @lesson_translation = @lesson.lesson_translations.find_by(
+      :sequential_id => params[:id]
+    )
   end
 
   def lesson_translation_params

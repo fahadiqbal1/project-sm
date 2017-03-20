@@ -40,6 +40,9 @@
                     <%= user_pref.label :delivery_time, :class => 'col-sm-3 col-form-label' %>
                     <div class="col-sm-9">
                         <%= user_pref.select(:delivery_time, [["Morning","morning"], ["Afternoon","afternoon"], ["Evening","evening"]], {}, {:class => 'form-control'}) %>
+                        <p class="form-text text-muted">
+                            Time is displayed as GMT
+                        </p>
                     </div>
                 </div>
 
@@ -109,7 +112,7 @@
             <div class="tab-pane fade" id="courses" role="tabpanel">
                <%= f.association :courses,
                     as: :check_boxes,
-                    collection: Course.active_and_approved.order(sequential_id: :asc),
+                    collection: Course.active.order(sequential_id: :asc),
                     :label_method => lambda { |course| "#{course.name} | #{course.description}" },
                     :boolean_style => :nested,
                     :collection_wrapper_tag => :div,
@@ -117,12 +120,6 @@
                     :item_wrapper_class => 'form-check-label',
                     :input_class => 'form-check-input'
                 %>
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" value="">
-                    Option one is this and that&mdash;be sure to include why it's great
-                  </label>
-                </div>
             </div>
         </div>
         <%= f.submit :class => 'btn btn-primary btn-block'  %>

@@ -15,6 +15,13 @@
                         <span class="tree-toggle"><%= icon('plus') %></span>
                         <span class="text-<%= object_status(lesson) %>"><%= lesson.name %></span>
                         <div class="item-actions" role="group">
+                            <%= link_to sanitize("#{icon('eye')} View Lesson"),
+                                    course_subject_lesson_path(
+                                        :course_id => @course,
+                                        :subject_id => s,
+                                        :id => lesson
+                                    ),
+                                    :class => "card-link" %>
                             <%= link_to sanitize("#{icon('edit')} Edit Lesson"),
                                     edit_course_subject_lesson_path(
                                         :course_id => @course,
