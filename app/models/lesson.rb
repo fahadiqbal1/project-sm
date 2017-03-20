@@ -11,7 +11,7 @@
 #  status        :integer          default("0")
 #
 class Lesson < ApplicationRecord
-  has_paper_trail
+  has_paper_trail :only => [:name, :status]
   belongs_to :subject
   acts_as_sequenced :scope => :subject_id
   delegate :course, :to => :subject, :allow_nil => true

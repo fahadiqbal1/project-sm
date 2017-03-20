@@ -11,7 +11,7 @@
 #  status        :integer          default("0")
 #
 class Course < ApplicationRecord
-  has_paper_trail
+  has_paper_trail :only => [:name, :description, :status]
   has_many :subjects, :dependent => :destroy
   has_many :lessons, :through => :subjects
   has_many :user_courses
