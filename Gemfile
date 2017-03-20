@@ -34,6 +34,7 @@ gem 'font-awesome-sass', '~> 4.7.0'
 gem 'intl-tel-input-rails'
 gem 'meta-tags' # https://github.com/kpumuk/meta-tags
 gem 'marco-polo' # https://github.com/arches/marco-polo
+gem 'paper_trail' # https://github.com/airblade/paper_trail
 gem 'pickadate-rails' # https://github.com/veracross/pickadate-rails
 gem 'redcarpet' # https://github.com/vmg/redcarpet
 gem 'secure_headers', '~> 3.0' # https://github.com/twitter/secureheaders

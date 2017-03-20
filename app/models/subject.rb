@@ -12,6 +12,7 @@
 #  status        :integer          default("0")
 #
 class Subject < ApplicationRecord
+  has_paper_trail
   belongs_to :course
   acts_as_sequenced :scope => :course_id
   has_many :lessons, :dependent => :destroy

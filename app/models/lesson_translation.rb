@@ -12,6 +12,7 @@
 #  updated_at    :datetime         not null
 #
 class LessonTranslation < ApplicationRecord
+  has_paper_trail
   belongs_to :lesson
   belongs_to :language
   acts_as_sequenced :scope => :lesson_id

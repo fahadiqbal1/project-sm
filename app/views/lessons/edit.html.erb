@@ -1,3 +1,9 @@
 <% provide(:title, "Edit #{@lesson.name}" ) %>
 
 <%= render 'form', lesson: @lesson %>
+
+<hr>
+
+<% if current_admin.admin? && @lesson.versions %>
+    <%= render 'shared/version_table', :obj => @lesson %>
+<% end %>

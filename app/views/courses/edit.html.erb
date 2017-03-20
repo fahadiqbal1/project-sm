@@ -18,3 +18,9 @@
     :include_blank => false %>
   <%= f.button :submit %>
 <% end %>
+
+<hr>
+
+<% if current_admin.admin? && @course.versions %>
+    <%= render 'shared/version_table', :obj => @course %>
+<% end %>

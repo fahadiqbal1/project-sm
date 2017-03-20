@@ -4,8 +4,13 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery :with => :exception
+  before_action :set_paper_trail_whodunnit
 
   add_breadcrumb "Home", :root_path
+
+  def user_for_paper_trail
+    admin_signed_in? ? current_admin.email : "Public user"
+  end
 
   private
 

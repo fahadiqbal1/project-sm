@@ -4,7 +4,8 @@ Rails.application.routes.draw do
 
   scope "(:locale)", :locale => /#{I18n.available_locales.join("|")}/ do
     devise_for :admins, :path_names => {
-      :sign_in => "login"
+      :sign_in => "login",
+      :sign_up => "sign_up_to_be_an_admin"
     }
     devise_for :users, :controllers => {
       :sessions => "user/sessions",

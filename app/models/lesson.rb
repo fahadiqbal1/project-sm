@@ -11,6 +11,7 @@
 #  status        :integer          default("0")
 #
 class Lesson < ApplicationRecord
+  has_paper_trail
   belongs_to :subject
   acts_as_sequenced :scope => :subject_id
   delegate :course, :to => :subject, :allow_nil => true

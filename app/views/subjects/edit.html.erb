@@ -1,3 +1,9 @@
 <% provide(:title, "Edit #{@subject.name}" ) %>
 
 <%= render 'form', subject: @subject %>
+
+<hr>
+
+<% if current_admin.admin? && @subject.versions %>
+    <%= render 'shared/version_table', :obj => @subject %>
+<% end %>
