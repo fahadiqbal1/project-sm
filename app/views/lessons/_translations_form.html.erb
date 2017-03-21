@@ -1,0 +1,21 @@
+<div id="accordion" role="tablist" aria-multiselectable="false">
+  <div class="card mb-1">
+    <div class="card-header" role="tab" id="heading">
+      <h5 class="mb-0">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse" aria-expanded="true" aria-controls="collapse">
+        </a>
+      </h5>
+    </div>
+
+    <div id="collapse" class="collapse show" role="tabpanel" aria-labelledby="heading">
+      <div class="card-block">
+        <%= f.input :content, as: :text %>
+        <%= f.input :status,
+            collection: LessonTranslation.statuses.keys,
+            :label_method => lambda { |status| status.capitalize },
+            :disabled => [('approved' unless current_admin.approver?),('active' unless current_admin.superuser?)],
+            :include_blank => false %>
+      </div>
+    </div>
+  </div>
+</div>

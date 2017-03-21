@@ -33,6 +33,7 @@ class User < ApplicationRecord
   has_many :languages, :through => :user_languages
   has_many :user_courses
   has_many :courses, :through => :user_courses
+  has_many :user_lesson_progressions
 
   accepts_nested_attributes_for :user_preference, :allow_destroy => true
   accepts_nested_attributes_for :user_languages, :allow_destroy => true
@@ -49,6 +50,21 @@ class User < ApplicationRecord
   validate :phone_number_plausibility
 
   scope :active, -> { where.not(:otp_confirmed_at => nil) }
+  scope :morning_users, lambda {
+    joins(:user_preference).where(
+      :user_preferences => { :delivery_time => "morning" }
+    ).active
+  }
+  scope :afternoon_users, lambda {
+    joins(:user_preference).where(
+      :user_preferences => { :delivery_time => "afternoon" }
+    ).active
+  }
+  scope :evening_users, lambda {
+    joins(:user_preference).where(
+      :user_preferences => { :delivery_time => "evening" }
+    ).active
+  }
 
   def to_s
     phone_number
@@ -78,6 +94,10 @@ class User < ApplicationRecord
 
   def otp_confirmed?
     otp_confirmed_at ? true : false
+  end
+
+  def active_courses
+    user_courses.where(:user_courses => { :is_complete => false })
   end
 
   private

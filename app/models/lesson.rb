@@ -13,9 +13,9 @@
 class Lesson < ApplicationRecord
   has_paper_trail :only => [:name, :status]
   belongs_to :subject
+  has_many :lesson_translations
   acts_as_sequenced :scope => :subject_id
   delegate :course, :to => :subject, :allow_nil => true
-  has_many :lesson_translations
 
   enum :status => [:inactive, :approved, :active]
 
@@ -28,6 +28,8 @@ class Lesson < ApplicationRecord
   validates :subject_id, :presence => true, :numericality => true
 
   before_create :build_default_translations
+
+  default_scope { order(:sequential_id) }
 
   # Automatically use the sequential ID in URLs
   def to_param

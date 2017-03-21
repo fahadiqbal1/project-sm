@@ -72,7 +72,14 @@ class SubjectsController < ApplicationController
       :description,
       :sequential_id,
       :status,
-      :course_id
+      :course_id,
+      :lessons_attributes => [
+        :id,
+        :name,
+        :sequential_id,
+        :status,
+        :subject_id
+      ]
     )
   end
 end

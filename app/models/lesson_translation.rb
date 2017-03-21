@@ -19,6 +19,8 @@ class LessonTranslation < ApplicationRecord
 
   enum :status => [:inactive, :approved, :active]
 
+  default_scope { order(:sequential_id) }
+
   scope :for_language, lambda { |language|
     joins(:language).where("languages.name = ?", language)
   }

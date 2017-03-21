@@ -15,4 +15,10 @@ class UserLessonProgression < ApplicationRecord
   belongs_to :lesson
   belongs_to :subject
   belongs_to :course
+
+  validates_presence_of [:user_id, :lesson_id, :subject_id, :course_id]
+  validates_uniqueness_of :lesson_id,
+                          :scope => :user_id,
+                          :on => :create,
+                          :message => "must be unique"
 end
