@@ -60,7 +60,7 @@ class SubjectsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_subject
-    @course = Course.find(params[:course_id])
+    @course = Course.find_by(:sequential_id => params[:course_id])
     @subject = @course.subjects.find_by(:sequential_id => params[:id])
   end
 

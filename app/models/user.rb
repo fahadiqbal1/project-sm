@@ -100,6 +100,12 @@ class User < ApplicationRecord
     user_courses.where(:user_courses => { :is_complete => false })
   end
 
+  def completed_lessons_for_course(course_id)
+    user_lesson_progressions.where(
+      :user_lesson_progressions => { :course_id => course_id }
+    )
+  end
+
   private
 
   def phone_number_plausibility

@@ -2,6 +2,7 @@
 class CoursesController < ApplicationController
   skip_before_action :authenticate_user!
   before_action :authenticate_admin!, :except => [:show, :index]
+  before_action :set_course, :only => [:show, :edit, :update, :destroy]
 
   add_breadcrumb "Courses", :courses_path
 
@@ -27,19 +28,15 @@ class CoursesController < ApplicationController
   end
 
   def show
-    @course = Course.find(params[:id])
     add_breadcrumb @course.name, @course
   end
 
   def edit
-    @course = Course.find(params[:id])
     add_breadcrumb @course.name, course_path(@course)
     add_breadcrumb "Edit", edit_course_path(@course)
   end
 
   def update
-    @course = Course.find(params[:id])
-
     if @course.update_attributes(course_params)
       flash[:notice] = "Course was successfully updated."
       redirect_to(@course)
@@ -50,7 +47,6 @@ class CoursesController < ApplicationController
 
   def destroy
     if current_admin.admin?
-      @course = Course.find(params[:id])
       @course.destroy
       flash[:notice] = "Course was successfully removed."
     else
@@ -61,6 +57,10 @@ class CoursesController < ApplicationController
   end
 
   private
+
+  def set_course
+    @course = Course.find_by(:sequential_id => params[:id])
+  end
 
   def course_params
     params.require(:course).permit(

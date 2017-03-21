@@ -27,4 +27,9 @@ class Course < ApplicationRecord
 
   validates_presence_of [:name, :description, :sequential_id, :status]
   validates :name, :uniqueness => true
+
+  # Automatically use the sequential ID in URLs
+  def to_param
+    sequential_id.to_s
+  end
 end
