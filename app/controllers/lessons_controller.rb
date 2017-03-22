@@ -75,7 +75,7 @@ class LessonsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_lesson
-    @course = Course.find(params[:course_id])
+    @course = Course.find_by(:sequential_id => params[:course_id])
     @subject = @course.subjects.find_by(:sequential_id => params[:subject_id])
     @lesson = @subject.lessons.find_by(:sequential_id => params[:id])
   end
@@ -87,7 +87,12 @@ class LessonsController < ApplicationController
       :name,
       :sequential_id,
       :status,
-      :subject_id
+      :subject_id,
+      :lesson_translations_attributes => [
+        :id,
+        :content,
+        :status
+      ]
     )
   end
 end

@@ -17,6 +17,8 @@ class Lesson < ApplicationRecord
   acts_as_sequenced :scope => :subject_id
   delegate :course, :to => :subject, :allow_nil => true
 
+  accepts_nested_attributes_for :lesson_translations, :allow_destroy => true
+
   enum :status => [:inactive, :approved, :active]
 
   validates :name,
