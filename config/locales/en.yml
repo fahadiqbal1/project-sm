@@ -28,6 +28,9 @@ en:
           enjoy_description: Enjoy the content and be sure to send us your feedback or contribute in creating and translating new content
   #Profile Page
   user_preference:
+    not_contsented_yet: You must consent to the application prior to being able to recieve messages
+    no_course_selected: You have not selected any courses yet. You can do so in the profile page
+    no_language_selected: You have not selected any message language(s). You can do so in the profile page
     index:
       title: Edit Your Profile
       consent_text: I CONSENT to Soul Medicine contacting me by text message, email, or any other form of delivery I have indicated. I will ensure that I keep Soul Medicine informed of my up to date mobile number at all times, or if the number is no longer in my possession.

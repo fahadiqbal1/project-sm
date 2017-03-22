@@ -105,15 +105,24 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="general" role="tabpanel">
-                General Fields
-            </div>
         <% end %>
+            <div class="tab-pane fade" id="general" role="tabpanel">
+                <%= f.association :languages,
+                    as: :check_boxes,
+                    collection: Language.where(:is_active => true),
+                    :label_method => lambda { |language| language.name },
+                    :boolean_style => :nested,
+                    :collection_wrapper_tag => :div,
+                    :collection_wrapper_class => 'form-check',
+                    :item_wrapper_class => 'form-check-label',
+                    :input_class => 'form-check-input'
+                %>
+            </div>
             <div class="tab-pane fade" id="courses" role="tabpanel">
                <%= f.association :courses,
                     as: :check_boxes,
                     collection: Course.active.order(sequential_id: :asc),
-                    :label_method => lambda { |course| "#{course.name} | #{course.description}" },
+                    :label_method => lambda { |course| sanitize("#{course.name} | #{course.description} <br>") },
                     :boolean_style => :nested,
                     :collection_wrapper_tag => :div,
                     :collection_wrapper_class => 'form-check',

@@ -4,7 +4,11 @@ class UserTexter < Textris::Base
 
   def welcome_confirm(user)
     @user = user
-
     text :to => "+#{@user.normalized}"
+  end
+
+  def send_message(number, message)
+    @message = message
+    text :to => number
   end
 end

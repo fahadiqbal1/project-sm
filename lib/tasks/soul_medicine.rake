@@ -14,6 +14,6 @@ namespace :soul_medicine do
   task :send_messages, [:timeOfDay] => :environment do |_task, args|
     # MessageSendAlgorithmWorker.perform_async(args.timeOfDay)
     puts ">>>>> #{args.timeOfDay} <<<<<"
-    SendSmsJob.perform_later args.timeOfDay
+    MessageDeliveryAlgorithmJob.perform_later args.timeOfDay
   end
 end

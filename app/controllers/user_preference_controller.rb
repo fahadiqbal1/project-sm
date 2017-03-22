@@ -29,6 +29,7 @@ class UserPreferenceController < ApplicationController
                                    :country_of_origin,
                                    :country_of_residence
                                  ],
+                                 :language_ids => [],
                                  :course_ids => [])
   end
 end

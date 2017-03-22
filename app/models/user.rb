@@ -49,7 +49,11 @@ class User < ApplicationRecord
   validates :phone_dial_code, :presence => true, :numericality => true
   validate :phone_number_plausibility
 
-  scope :active, -> { where.not(:otp_confirmed_at => nil) }
+  scope :active, lambda {
+    joins(:user_preference)
+      .where.not(:otp_confirmed_at => nil)
+      .where(:user_preferences => { :consent => true })
+  }
   scope :morning_users, lambda {
     joins(:user_preference).where(
       :user_preferences => { :delivery_time => "morning" }
