@@ -17,12 +17,7 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one:
-  name: Lesson 1
+lesson1:
+  name: Test Lesson
   sequential_id: 1
-  status: :active
-  subject_id: 1
-# column: value
-#
-# two: {}
-# column: value
+  subject: subject1
