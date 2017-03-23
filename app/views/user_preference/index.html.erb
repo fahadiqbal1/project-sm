@@ -1,0 +1,137 @@
+<% provide(:title, t('.title') ) %>
+
+<%= simple_form_for(@user, as: 'user', url: user_preference_path(@user), method: :patch, html: { multipart: false, novalidate: true } ) do |f| %>
+<div class="row">
+    <div class="col-md-3">
+        <ul class="nav nav-pills flex-sm-column" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#service" role="tab">Service</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#profile" role="tab">Profile</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#general" role="tab">General</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#courses" role="tab">Courses</a>
+          </li>
+        </ul>
+    </div>
+    <div class="col-md-9">
+        <%= error_messages_for(@user) %>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="service" role="tabpanel">
+                <div class="form-group row">
+                    <%= f.label :phone_number, :class => 'col-sm-3 col-form-label' %>
+                    <div class="col-sm-9"><%= f.text_field :phone_number, :autofocus => true, :class => 'form-control' %></div>
+                    <%= f.hidden_field :phone_dial_code %>
+                </div>
+
+                <div class="form-group row">
+                    <%= f.label :email, :class => 'col-sm-3 col-form-label' %>
+                    <div class="col-sm-9">
+                        <%= f.email_field :email, :required => false, :class => 'form-control' %>
+                        <p class="form-text text-muted">Optional</p>
+                    </div>
+                </div>
+        <%= f.fields_for :user_preference, @user.user_preference do |user_pref| %>
+                <div class="form-group row">
+                    <%= user_pref.label :delivery_time, :class => 'col-sm-3 col-form-label' %>
+                    <div class="col-sm-9">
+                        <%= user_pref.select(:delivery_time, [["Morning","morning"], ["Afternoon","afternoon"], ["Evening","evening"]], {}, {:class => 'form-control'}) %>
+                        <p class="form-text text-muted">
+                            Time is displayed as GMT
+                        </p>
+                    </div>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <label class="form-check-label">
+                        <%= user_pref.check_box(:consent, :required => true, :class => 'form-check-input') %>
+                        <%= t '.consent_text' %>
+                    </label>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="profile" role="tabpanel">
+                <div class="form-group row">
+                    <%= user_pref.label :first_name, :class => 'col-sm-3 col-form-label' %>
+                    <div class="col-sm-9">
+                        <%= user_pref.text_field :first_name, :required => false, :class => 'form-control' %>
+                        <p class="form-text text-muted">Optional</p>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <%= user_pref.label :last_name, :class => 'col-sm-3 col-form-label' %>
+                    <div class="col-sm-9">
+                        <%= user_pref.text_field :last_name, :required => false, :class => 'form-control' %>
+                        <p class="form-text text-muted">Optional</p>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <%= user_pref.label :gender, :class => 'col-sm-3 col-form-label' %>
+                    <div class="col-sm-9">
+                        <%= user_pref.select :gender,
+                                             [['Male', 'M'], ['Female', 'F'], ['Prefer Not To Say', 'N/A']],
+                                             {},
+                                             { :class => 'form-control' } %>
+                        <p class="form-text text-muted">Optional</p>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <%= user_pref.label :country_of_origin, :class => 'col-sm-3 col-form-label' %>
+                    <div class="col-sm-9">
+                        <%= user_pref.country_select(
+                            :country_of_origin,
+                            { priority_countries: ["AF", "SY", "IQ"], selected: @user.user_preference.country_of_origin },
+                            { class: 'form-control', data: { attribute: "value" } }
+                        ) %>
+                        <p class="form-text text-muted">Optional</p>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <%= user_pref.label :country_of_residence, :class => 'col-sm-3 col-form-label' %>
+                    <div class="col-sm-9">
+                        <%= user_pref.country_select(
+                            :country_of_residence,
+                            { priority_countries: ["GB", "FR", "DE"], include_blank: true, selected: @user.user_preference.country_of_residence },
+                            { class: 'form-control', data: { attribute: "value" } }
+                        ) %>
+                        <p class="form-text text-muted">Optional</p>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+            <div class="tab-pane fade" id="general" role="tabpanel">
+                <%= f.association :languages,
+                    as: :check_boxes,
+                    collection: Language.where(:is_active => true),
+                    :label_method => lambda { |language| language.name },
+                    :boolean_style => :nested,
+                    :collection_wrapper_tag => :div,
+                    :collection_wrapper_class => 'form-check',
+                    :item_wrapper_class => 'form-check-label',
+                    :input_class => 'form-check-input'
+                %>
+            </div>
+            <div class="tab-pane fade" id="courses" role="tabpanel">
+               <%= f.association :courses,
+                    as: :check_boxes,
+                    collection: Course.active.order(sequential_id: :asc),
+                    :label_method => lambda { |course| sanitize("#{course.name} | #{course.description} <br>") },
+                    :boolean_style => :nested,
+                    :collection_wrapper_tag => :div,
+                    :collection_wrapper_class => 'form-check',
+                    :item_wrapper_class => 'form-check-label',
+                    :input_class => 'form-check-input'
+                %>
+            </div>
+        </div>
+        <%= f.submit :class => 'btn btn-primary btn-block'  %>
+    </div>
+</div>
+<% end %>

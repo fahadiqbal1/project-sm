@@ -1,57 +1,43 @@
 Rails.application.routes.draw do
-  devise_for :users
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+  resources :user_lesson_progressions
+  require "sidekiq/web"
 
-  # You can have the root of your site routed with "root"
-  root 'home#index'
+  scope "(:locale)", :locale => /#{I18n.available_locales.join("|")}/ do
+    devise_for :admins, :path_names => {
+      :sign_in => "login",
+      :sign_up => "sign_up_to_be_an_admin"
+    }
+    devise_for :users, :controllers => {
+      :sessions => "user/sessions",
+      :registrations => "user/registrations"
+    }, :path => "", :path_names => {
+      :sign_in => "login",
+      :sign_out => "logout",
+      :password => "secret",
+      :unlock => "unblock",
+      :registration => "register",
+      :sign_up => ""
+    }, :skip => [:unlock, :confirmations]
 
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+    root "home#index"
 
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+    resources :confirmation, :only => [:index, :create]
+    resources :user_preference, :only => [:index, :update], :path => "profile"
+    resources :courses do
+      resources :subjects, :only => [:show, :new, :create, :edit, :update, :destroy] do
+        resources :lessons, :only => [:show, :new, :create, :edit, :update, :destroy] do
+          resources :lesson_translations, :only => [:show, :edit, :update, :destroy], :path => "translation"
+        end
+      end
+    end
+    resources :admin, :only => [:index, :edit, :update, :destroy]
 
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+    get "/ethos" => "staticpage#ethos"
+    get "/contribute" => "staticpage#contribute"
+    get "/privacy" => "staticpage#privacy"
 
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+    authenticate :admin do
+      mount Sidekiq::Web => "/sidekiq"
+    end
+  end
 end

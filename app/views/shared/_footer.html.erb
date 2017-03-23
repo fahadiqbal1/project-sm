@@ -1,0 +1,14 @@
+<footer class="footer">
+    <div class="container">
+        <span class="text-muted">© <%= Time.current.year %> Soul Medicine</span>
+        <span class="pull-right">
+            <% if !admin_signed_in? %>
+            <%= link_to("Admin", admin_session_path) %> |
+            <% end %>
+            <%= icon("github") %> <%= link_to("GitHub", "https://github.com/empowerhack/soulmedicine") %> |
+            <%= icon("slack") %> <%= link_to("Slack", "https://chayn.slack.com") %> |
+            <%= link_to("Privacy Policy", privacy_path) %> |
+            Contact
+        </span>
+    </div>
+</footer>

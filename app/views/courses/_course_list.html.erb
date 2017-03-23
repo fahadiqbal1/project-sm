@@ -1,0 +1,35 @@
+
+<div id="accordion" role="tablist" aria-multiselectable="true">
+    <% @course.subjects.active.order(:sequential_id).each_with_index do |s, index| %>
+        <div class="card">
+            <div class="card-header" role="tab" id="heading<%= index %>">
+                <h5 class="mb-0">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= index %>" aria-expanded="false" aria-controls="collapse<%= index %>">
+                        <%= s.name %>
+                    </a>
+                </h5>
+            </div>
+            <div id="collapse<%= index %>" class="collapse" role="tabpanel" aria-labelledby="heading<%= index %>">
+                <div class="card-block">
+                    <%= s.description %>
+                </div>
+                <div class="card-block">
+                    <h6 class="card-subtitle mb-2 text-muted">Lessons</h6>
+                    <ul class="list-group list-group-flush">
+                        <% if s.lessons.active.order(:sequential_id).each_with_index do |lesson, index| %>
+                                <%= link_to lesson.name,
+                                    course_subject_lesson_path(
+                                        :course_id => @course,
+                                        :subject_id => s,
+                                        :id => lesson
+                                    ),
+                                    :class => "list-group-item list-group-item-action" %>
+                        <% end.empty? %>
+                            <li class="list-group-item">No Lessons Active Yet.  <%= link_to "Add A New Lesson", "#" unless !admin_signed_in? %></li>
+                        <% end %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    <% end %>
+</div>

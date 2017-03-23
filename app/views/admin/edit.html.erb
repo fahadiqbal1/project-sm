@@ -1,0 +1,10 @@
+<h3>Edit <%= @admin.email %> </h3>
+
+<%= simple_form_for @admin do |f| %>
+  <%= f.input :email, disabled: !current_admin.superuser? %>
+  <%= f.input :translator, as: :boolean, label: "Translator?", disabled: !current_admin.superuser?, required: false %>
+  <%= f.input :approver, as: :boolean, label: "Approver?", disabled: !current_admin.superuser?, required: false %>
+  <%= f.input :superuser, as: :boolean, label: "Super User?", disabled: !current_admin.superuser?, required: false %>
+  <%= f.input :admin, as: :boolean, label: "Administrator?", disabled: !current_admin.admin?, required: false %>
+  <%= f.button :submit, disabled: !current_admin.superuser? %>
+<% end %>

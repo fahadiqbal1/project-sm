@@ -1,0 +1,8 @@
+<% provide(:title, @lesson.name ) %>
+
+<% @lesson.lesson_translations.each do |translation| %>
+  <div class = <%= "ar" if translation.language.name == 'العربية' %>>
+    <h3><%= translation.language.name %></h3>
+    <p><%= translation.content %></p>
+  </div>
+<% end %>

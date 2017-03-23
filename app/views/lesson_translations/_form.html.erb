@@ -1,0 +1,14 @@
+<%= simple_form_for([@course, @subject, @lesson, @lesson_translation]) do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :content, as: :text %>
+  <%= f.input :status,
+    collection: LessonTranslation.statuses.keys,
+    :label_method => lambda { |status| status.capitalize },
+    :disabled => [('approved' unless current_admin.approver?),('active' unless current_admin.superuser?)],
+    :include_blank => false %>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

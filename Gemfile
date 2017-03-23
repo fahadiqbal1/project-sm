@@ -1,5 +1,6 @@
-source 'https://rubygems.org'
-ruby "2.4.0"
+source "https://rubygems.org"
+
+ruby '2.4.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0'
@@ -22,25 +23,40 @@ gem 'passenger', group: :production
 
 # Soul Medicine Gems
 gem 'bootstrap', '~> 4.0.0.alpha6'
-# gem 'cancancan', '~> 1.10'
+gem 'bootscale', :require => false
+gem "breadcrumbs_on_rails" # https://github.com/weppos/breadcrumbs_on_rails
+gem 'country_select' # https://github.com/stefanpenner/country_select
 gem 'devise'
+gem 'devise-i18n'
 gem 'dotenv-rails', groups: [:development, :test]
-gem "econfig", require: "econfig/rails"
+gem 'econfig', require: 'econfig/rails'
+gem 'font-awesome-sass', '~> 4.7.0'
+gem 'intl-tel-input-rails'
+gem 'meta-tags' # https://github.com/kpumuk/meta-tags
+gem 'marco-polo' # https://github.com/arches/marco-polo
+gem 'paper_trail' # https://github.com/airblade/paper_trail
+gem 'pickadate-rails' # https://github.com/veracross/pickadate-rails
+gem 'redcarpet' # https://github.com/vmg/redcarpet
+gem 'secure_headers', '~> 3.0' # https://github.com/twitter/secureheaders
+gem 'sequenced' # https://github.com/djreimer/sequenced
 gem 'sidekiq'
+gem 'simple_form' # https://github.com/plataformatec/simple_form
 gem 'sinatra', :require => false
 gem 'sprockets-rails', :require => 'sprockets/railtie'
+gem 'tether-rails' #https://github.com/jakegavin/tether-rails
 gem 'twilio-ruby'
+gem 'textris'
 # End Soul Medicine Gems
 
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+group :production, :staging do
+  gem 'postmark-rails'
+  gem 'unicorn'
+  gem 'unicorn-worker-killer'
+end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -48,10 +64,32 @@ group :development, :test do
 end
 
 group :development do
-  # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  gem 'annotate' # https://github.com/ctran/annotate_models
+  gem 'better_errors' # https://github.com/charliesome/better_errors
+  gem 'binding_of_caller' # https://github.com/charliesome/better_errors
+  gem 'brakeman', :require => false # https://github.com/presidentbeef/brakeman
+  gem 'guard', '>= 2.2.2', :require => false # https://github.com/guard/guard
+  gem 'guard-livereload', :require => false
+  gem 'guard-minitest', :require => false
+  gem 'guard-rails', require: false # https://github.com/ranmocy/guard-rails
+  gem 'letter_opener' # https://github.com/ryanb/letter_opener
+  gem 'overcommit', '>= 0.37.0', :require => false # https://github.com/brigade/overcommit
+  gem 'rack-livereload' # https://github.com/johnbintz/rack-livereload
+  gem 'rubocop', '>= 0.44.0', :require => false
+  gem 'spring' # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'web-console', '~> 2.0' # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'xray-rails' # https://github.com/brentd/xray-rails
+end
 
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+group :test do
+  gem 'capybara'
+  gem 'connection_pool'
+  gem 'launchy'
+  gem 'minitest-capybara'
+  gem 'minitest-reporters'
+  gem 'mocha'
+  gem 'poltergeist'
+  gem 'shoulda-context'
+  gem 'shoulda-matchers', '>= 3.0.1'
 end
 

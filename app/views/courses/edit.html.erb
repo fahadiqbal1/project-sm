@@ -1,0 +1,26 @@
+<h3>Edit <%= @course.name %> </h3>
+
+<%= simple_form_for @course do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description, as: :text %>
+  <%= f.input :sequential_id, label: "Order" %>
+  <%= f.association :languages,
+        as: :check_boxes,
+        :boolean_style => :nested,
+        :collection_wrapper_tag => :div,
+        :collection_wrapper_class => 'form-check',
+        :item_wrapper_class => 'form-check-label',
+        :input_class => 'form-check-input' %>
+  <%= f.input :status,
+    collection: Course.statuses.keys,
+    :label_method => lambda { |status| status.capitalize },
+    :disabled => [('approved' unless current_admin.approver?),('active' unless current_admin.superuser?)],
+    :include_blank => false %>
+  <%= f.button :submit %>
+<% end %>
+
+<hr>
+
+<% if current_admin.admin? && @course.versions %>
+    <%= render 'shared/version_table', :obj => @course %>
+<% end %>

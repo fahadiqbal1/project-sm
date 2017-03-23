@@ -1,23 +1,195 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  navbar:
+    brand: Soul Medicine
+    home: Home
+    ethos: Ethos
+    contribute: Contribute
+    courses: Courses
+    profile: Edit Profile
+    log_out: Log Out
+    confirm_phone: Confirm Phone
+    log_in: Log In
+    sign_up: Sign Up
+  # Home Page
+  home:
+    index:
+      main_title: Soul Medicine
+      sub_title: Brighten your day by learning something new.
+      main_description: A mental well-being programme that sends crowdsourced feel-good knowledge courses and quotes. Choose the languages (yes, you can sign up for more than one!) you want & the time that suits you to start receiving the messages!
+      action_item: Get Started
+      section:
+        how_it_works:
+          title: How It Works
+          sign_up: Sign Up
+          sign_up_description: We just need your phone number and your language to start sending you daily messages!
+          receive_sms: Recieve SMS
+          receive_sms_description: Everyday, at the time of your choosing, we will send you a SMS with a snippet of your course or quote and a link to the full version.
+          enjoy: Enjoy!
+          enjoy_description: Enjoy the content and be sure to send us your feedback or contribute in creating and translating new content
+  #Profile Page
+  user_preference:
+    not_contsented_yet: You must consent to the application prior to being able to recieve messages
+    no_course_selected: You have not selected any courses yet. You can do so in the profile page
+    no_language_selected: You have not selected any message language(s). You can do so in the profile page
+    index:
+      title: Edit Your Profile
+      consent_text: I CONSENT to Soul Medicine contacting me by text message, email, or any other form of delivery I have indicated. I will ensure that I keep Soul Medicine informed of my up to date mobile number at all times, or if the number is no longer in my possession.
+  # Static Pages
+  staticpage:
+    # Contribute Page
+    contribute:
+      title: Contribute
+      ways_to_contribute: Ways to Contribute
+      ways_to_contribute_paragraph: |
+        There are many ways to contribute to Soul Medicine
+      special_thanks_to: A Special Thanks To
+      twilio: Twilio
+      twilio_text: |
+        Twilio gave us a $500 credit to use as part of their **A Billion Messages for Good**. We are very grateful for their contribution.
+
+        You can learn more about their initiatives at [twilio.org](https://www.twilio.org/)
+      chayn: Chayn
+      chayn_text: |
+        Chayn is an award-winning, open-source project that leverages technology to empower women against violence and oppression so they can live happier and healthier lives.
+      empowerhack: EmpowerHack
+      empowerhack_text: |
+        EmpowerHack is a volunteer tech collective for refugee women and girls. It is where the initial work for Soul Medicine took place
+    # Ethos Page
+    ethos:
+      title: Ethos
+      what_is_soul_medicine: What is Soul Medicine?
+      what_is_soul_medicine_paragraph: |
+        Soul Medicine is a mental well-being programme to help brighten the day of people experiencing loneliness and depression by sending crowdsourced feel-good knowledge courses and quotes.
+
+        Choose the languages (yes, you can sign up for more than one!) you want & the time that suits you.
+
+        More than 20 volunteers from CHAYN and EmpowerHack have created these 3 month courses. The year long duration of the course means that refugees can stay connected all year long, throughout their journey and not just at intermediate stops. If you’re not a refugee, you can still sign up to the course!
+
+        Soul Medicine already ran a pilot in 2015, receiving excellent feedback from abuse survivors. Encouraged by this, we decided to  We want everyone to know that you are not alone, that the mind is just as important as the body and that by treating it well, we can all start to feel better about ourselves - especially when it seems like we don’t have control over our lives.
+
+        Here’s what our hypothesis is based on:
+
+        **A motivational quote that is designed to work like a positive affirmation.** Positive affirmations, since first popularised by the French psychologist Emile Coué in the 1920s, have been used to change negative thought patterns and increase self-esteem with multiple studies showing that their use protects individuals against the negative impacts of stress.
+
+        **A crowdsourced human biology course.** Research has shown that learning has a positive impact on mental well-being by boosting confidence, building self-esteem and creating a sense of purpose. Human Biology was chosen to reflect the importance of the body’s relationship with the mind, deepening that connection of physical and spiritual mindfulness during the course.
+      what_sparked: What sparked Soul Medicine?
+      what_sparked_paragraph: |
+        Refugee mental health is seriously under supported by those trying to help them, mainly because needs like shelter, nutrition, and health are seen as top priority. A [recent report](http://www.bptk.de/aktuell/einzelseite/artikel/mindestens-d.html/) by Germany's chamber of psychotherapists found that half of refugees are experiencing psychological distress and mental illness resulting from trauma. One fifth of refugee children are also suffering from PTSD, according to the same report. But as more and more migrants and refugees arrive, support services are becoming increasingly stretched.
+
+        The more common mental health diagnoses associated with refugee populations include post-traumatic stress disorder (PTSD), major depression, generalized anxiety, panic attacks, adjustment disorder, and somatization. The incidence of diagnoses varies with different populations and their experiences. Different studies have shown rates of PTSD and major depression in settled refugees to range from 10-40% and 5-15%, respectively. Children and adolescents often have higher levels with various investigations revealing rates of PTSD from 50-90% and major depression from 6-40%. Risk factors for the development of mental health problems include the number of traumas, delayed asylum application process, detention, and the loss of culture and support systems.
+      like_what_you_see: Like what you see?
+      like_what_you_see_paragraph: |
+        We’re looking for volunteers and ambassadors who can help us build more courses, translate texts and help us spread the word about our service. Interested? Send an email to [team@soulmedicine.io](mailto:team@soulmedicine.io).
+    privacy:
+      title: Privacy Policy
+      policy_changes: |
+        ### History of changes
+
+        * March 15, 2017 - First Published
+      policy: |
+        This policy applies to all information collected or submitted on Soul Medicine’s website and any other devices and platforms. When we say “Soul Medicine,” “our,” “we,” or “us,” we’re talking about Soul Medicine. This Privacy Policy (“Privacy Policy”) applies to all of our apps, services, features, software, and website (together, “Services”) unless specified otherwise.
+
+        ### Information we collect
+
+        When creating an account, you will be asked for a phone number and password. The phone number is **only** used for delivering messages and the delivery only occurs **after** the number has been verified and confirmed, there is an optional email field with is **only** used for resetting passwords. At no point will your email or phone number be used for promotional or marketing purposes.
+
+        We also store any and all optional profile information you save in the profile page.
+
+        We use cookies on the site and similar tokens in the app to keep you logged in.
+
+        Like most websites and apps, we also store information through the use of software that may be transparent to users. For example, we may log your IP address and general information about your browser or device.
+
+        ### What do we use your information for?
+
+        We use the information we collect to operate and improve our website, apps, and customer support.
+
+        We do not share your personal information with outside parties except to the extent necessary to accomplish Soul Medicine's functionality.
+
+        ### How do we protect your information?
+
+        We implement a variety of security measures to help keep your information secure.
+
+        ### Do we use cookies?
+
+        Yes. Cookies are small files that a site or its service provider transfers to your computers hard drive through your Web browser (if you allow them) that enable the sites or service providers systems to recognize your browser and capture and remember certain information
+
+        We use cookies to help us remember your log in status and compile aggregate data about site traffic and site interaction so that we can offer better site experiences and tools in the future. We may contract with third-party service providers to assist us in better understanding our site visitors. These service providers are not permitted to use the information collected on our behalf except to help us conduct and improve our services.
+
+        If you prefer, you can choose to have your computer warn you each time a cookie is being sent, or you can choose to turn off all cookies via your browser settings. Like most websites, if you turn your cookies off, some of our services may not function properly.
+
+        ### Do we disclose any information to outside parties?
+
+        We do not sell, trade, or otherwise transfer to outside parties your personally identifiable information. This does not include trusted third parties who assist us in operating our website, conducting our business, or servicing you, so long as those parties agree to keep this information confidential. We may also release your information when we believe release is appropriate to comply with the law, enforce our site policies, or protect ours or others rights, property, or safety. However, non-personally identifiable visitor information may be provided to other parties for marketing, advertising, or other uses.
+
+        ### Third party links
+
+        Occasionally, at our discretion, we may include or offer third party products or services on our website. These third party sites have separate and independent privacy policies. We therefore have no responsibility or liability for the content and activities of these linked sites. Nonetheless, we seek to protect the integrity of our site and welcome any feedback about these sites.
+
+        ### California Online Privacy Protection Act Compliance
+
+        Because we value your privacy we have taken the necessary precautions to be in compliance with the California Online Privacy Protection Act. We therefore will not distribute your personal information to outside parties without your consent.
+
+        As part of the California Online Privacy Protection Act, all users of our site may make any changes to their information at anytime by logging and going to the 'Edit Profile' page.
+
+        ### Children's Online Privacy Protection Act Compliance
+
+        We are in compliance with the requirements of COPPA (Childrens Online Privacy Protection Act), we do not collect any information from anyone under 13 years of age. Our website, products and services are all directed to people who are at least 13 years old or older.
+
+        ### Online Privacy Policy Only
+
+        This online privacy policy applies only to information collected through our website and not to information collected offline.
+
+        ### Your Consent
+
+        By using our site, you consent to our web site privacy policy.
+
+        ### Changes to our Privacy Policy
+
+        If we decide to change our privacy policy, we will post those changes on this page, send an email notifying you of any changes, and/or update the Privacy Policy modification date above.
+
+        ### Contacting Us
+  confirmation:
+    index:
+      title: Confirm your Phone
+    code_confirmed: Your phone has been confirmed
+    already_confirmed: You have already confirmed your phone
+    code_not_correct: Confirmation Code in Incorrect
+    phone_not_found: Phone Number not found
+  activerecord:
+    models:
+      user: User
+    attributes:
+      user:
+        phone_number_plausibility: must be a valid number
+        phone_number: Phone Number
+        email: Email
+        password: Password
+        password_confirmation: Password Confirmation
+        otp: Confirmation Code
+        language_ids: Native Language
+      user_preference:
+        gender: Gender
+        age: Age
+        first_name: First Name
+        last_name: Last Name
+        consent: Consent
+        delivery_time: Message Delivery Time
+        country_of_origin: Country of Origin
+        country_of_residence: Country of Residence
+  helpers:
+    submit:
+      user:
+        create: Sign Up
+        update: Save Profile
+      confirmation:
+        create: Confirm
+  users:
+    registrations:
+      new:
+        title: Sign Up for Soul Medicine
+    sessions:
+      new:
+        title: Log In
+  user_texter:
+    welcome_confirm:
+      message: Thank you for signing up to Soul Medicine! Here is your confirmation code

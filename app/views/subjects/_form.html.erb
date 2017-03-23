@@ -1,0 +1,41 @@
+<%= simple_form_for([@course, @subject]) do |f| %>
+  <div class="row">
+    <div class="col-md-2">
+      <ul class="nav nav-pills flex-sm-column" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" data-toggle="tab" href="#subject" role="tab">Subject</a>
+        </li>
+        <% if !@subject.new_record? %>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#lessons" role="tab">Lessons</a>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="col-md-10">
+      <%= error_messages_for(@subject) %>
+      <div class="tab-content">
+        <div class="tab-pane fade show active" id="subject" role="tabpanel">
+          <%= f.input :name, :required => true %>
+          <%= f.input :description, as: :text, :required => true %>
+          <%= f.input :sequential_id, label: "Order", :required => true %>
+          <%= f.input :course_id, as: :hidden, :input_html => { :value => @course.id } %>
+          <%= f.input :status,
+            collection: Subject.statuses.keys,
+            :label_method => lambda { |status| status.capitalize },
+            :disabled => [('approved' unless current_admin.approver?),('active' unless current_admin.superuser?)],
+            :include_blank => false %>
+        </div>
+        <div class="tab-pane fade" id="lessons" role="tabpanel">
+          <%= f.simple_fields_for :lessons do |lesson| %>
+            <% render 'lessons_form', :f => lesson %>
+          <% end %>
+          <%= link_to "Add New Lesson",
+              new_course_subject_lesson_path(@course,@subject),
+              { :class=>"btn btn-sm btn-success mb-1 mt-1" } %>
+        </div>
+      </div>
+      <%= f.button :submit, :class => "btn-block" %>
+    </div>
+  </div>
+<% end %>

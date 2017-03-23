@@ -1,0 +1,9 @@
+<h1>Editing Lesson Translation</h1>
+
+<%= render 'form', lesson_translation: @lesson_translation %>
+
+<hr>
+
+<% if current_admin.admin? && @lesson_translation.versions %>
+    <%= render 'shared/version_table', :obj => @lesson_translation %>
+<% end %>

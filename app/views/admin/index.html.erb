@@ -1,0 +1,30 @@
+<table class="table table-hover table-bordered table-responsive">
+    <tr>
+        <th>Email</th>
+        <th>Translator</th>
+        <th>Approver</th>
+        <th>Super User</th>
+        <th>Admin</th>
+        <th>Active?</th>
+        <th></th>
+    </tr>
+    <% @admin.each do |a| %>
+        <tr class="<%= a.active? ? '' : 'table-danger' %>">
+            <td><%= link_to a.email, edit_admin_path(a) %></td>
+            <td><%= yesno(a.translator) %></td>
+            <td><%= yesno(a.approver) %></td>
+            <td><%= yesno(a.superuser) %></td>
+            <td><%= yesno(a.admin) %></td>
+            <td><%= yesno(a.is_active) %></td>
+            <td>
+                <%= link_to "Edit", edit_admin_path(a),
+                    :class => "btn btn-sm btn-primary" %>
+                <% if current_admin.admin? %>
+                    <%= link_to "Remove", a, method: :delete,
+                        data: { confirm: "Are you sure?" },
+                        :class => "btn btn-sm btn-danger" %>
+                <% end %>
+            </td>
+        </tr>
+    <% end %>
+</table>

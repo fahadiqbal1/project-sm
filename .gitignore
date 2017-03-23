@@ -6,13 +6,12 @@
 
 # Ignore bundler config.
 /.bundle
-
+.DS_Store
 # Ignore all logfiles and tempfiles.
 /log/*
 !/log/.keep
 /tmp
 .idea/*
-LICENSE
 # config/database.yml
 # config/secrets.yml
 .vscode
@@ -23,3 +22,5 @@ cookbooks
 passenger.*.lock
 .sprockets-manifest*.json
 .byebug_*
+/node_modules
+bin/*

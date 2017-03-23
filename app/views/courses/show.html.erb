@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-block">
+                <h4 class="card-title"><%= @course.name %></h4>
+                <p class="card-text"><%= @course.description %></p>
+                <dl class="row">
+                    <dt class="col-sm-6">Available In</dt>
+                    <dd class="col-sm-6">
+                        <% @course.languages.each do |lang| %>
+                            <span class='badge badge-label badge-primary'><%= lang.name %></span>
+                        <% end %>
+                    </dd>
+                </dl>
+            </div>
+            <% if admin_signed_in? %>
+                <div class="card-block">
+                    <dl class="row">
+                        <dt class="col-sm-6">Status</dt>
+                        <dd class="col-sm-6"><%= @course.status.capitalize %></dd>
+                        <dt class="col-sm-6">Display Order</dt>
+                        <dd class="col-sm-6"><%= @course.sequential_id %></dd>
+                    </dl>
+                    <%= link_to sanitize("#{icon('plus')} Add New Subject"), new_course_subject_path(@course), :class => "btn btn-success" %>
+                    <%= link_to sanitize("#{icon('edit')} Edit Course"), edit_course_path(@course), :class => "btn btn-primary" %>
+                </div>
+            <% end %>
+        </div>
+        <% if admin_signed_in? %>
+            <div class="card card-outline-info mb-3 text-center">
+                <h6 class="card-title">Key</h6>
+                <p class="card-text">
+                    <span class="text-success">Green = Active and available</span> <br>
+                    <span class="text-warning">Yellow = Approved, pending activation</span> <br>
+                    <span class="text-danger">Red = Inactive</span> <br>
+                </p>
+            </div>
+        <% end %>
+    </div>
+    <div class="col-md-8">
+        <% if admin_signed_in? %>
+            <%= render "courses/course_list_for_admins", locals: {course: @course} %>
+        <% else %>
+            <%= render "courses/course_list", locals: {course: @course} %>
+        <% end %>
+    </div>
+</div>

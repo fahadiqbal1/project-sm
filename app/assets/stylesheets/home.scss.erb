@@ -1,0 +1,49 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.ar {
+    direction: rtl;
+}
+
+body.home.index {
+    header {
+        position: relative;
+        width: 100%;
+        min-height: 95vh;
+        overflow-y: hidden;
+        background: url(<%= asset_data_uri 'cubes.png' %>),#7b4397;
+        background: url(<%= asset_data_uri 'cubes.png' %>),linear-gradient(to left,#437d97, #2476dc);
+        color: #fff;
+        padding-bottom: 15px;
+        display: table;
+
+        .home-page-jumbotron {
+            background: transparent;
+            display: table-cell;
+
+            hr {
+                border-top: 1px solid rgba(255, 255, 255, 0.35);
+            }
+        }
+    }
+
+    section {
+        h3 {
+            &.display-3 {
+                font-size: 2.5rem;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            }
+        }
+        .card-deck {
+            .card {
+                &:hover {
+                    .fa-stack-2x {
+                        transition: 1s linear;
+                        color: #0275d8;
+                    }
+                }
+            }
+        }
+    }
+}

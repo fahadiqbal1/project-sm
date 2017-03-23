@@ -1,0 +1,55 @@
+<% provide(:title, t('.title') ) %>
+
+<div class="form col-md-6 offset-md-3">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
+
+    <div class="form-group row">
+      <%= f.label :phone_number, :class => 'col-sm-3 col-form-label' %>
+      <div class="col-sm-9"><%= f.text_field :phone_number, :autofocus => true, :class => 'form-control' %></div>
+      <%= f.hidden_field :phone_dial_code %>
+    </div>
+
+    <div class="form-group row">
+      <%= f.label :email, :class => 'col-sm-3 col-form-label' %>
+      <div class="col-sm-9">
+        <%= f.email_field :email, :required => false, :class => 'form-control' %>
+        <p class="form-text text-muted">Optional</p>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= f.label :password, :class => 'col-sm-3 col-form-label' %>
+      <div class="col-sm-9">
+        <%= f.password_field :password, autocomplete: "off", :class => 'form-control' %>
+        <% if @minimum_password_length %>
+          <p class="form-text text-muted">(<%= @minimum_password_length %> characters minimum)</p>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= f.label :password_confirmation, :class => 'col-sm-3 col-form-label' %>
+      <div class="col-sm-9">
+        <%= f.password_field :password_confirmation, autocomplete: "off", :class => 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <%= f.label :language_ids, :class => 'col-sm-3 col-form-label' %>
+      <div class="col-sm-9">
+        <%# collection_select(:language, :id, Language.where(:is_active => true), :id, :name, {:prompt => true}, {:class => 'form-control', :required => :true}) %>
+        <%= collection_select(:user, :language_ids,
+              Language.where(:is_active => true),
+              :id, :name, {:include_blank => true}, {:class => 'form-control', :required => :true}) %>
+      </div>
+    </div>
+
+    <div class="actions">
+      <%= f.submit :class => 'btn btn-primary btn-block'  %>
+    </div>
+  <% end %>
+</div>
+
+
+<%# render "devise/shared/links" %>
