@@ -5,17 +5,32 @@ class LessonTranslationsController < ApplicationController
   before_action :set_lesson_translation,
                 :only => [:show, :edit, :update, :destroy]
 
+  add_breadcrumb "Courses", :courses_path
+
   # GET /lesson_translations/1
   def show
   end
 
   # GET /lesson_translations/new
   def new
+    add_breadcrumb @course.name, @course
+    add_breadcrumb @subject.name, @course
+    add_breadcrumb @lesson.name, @course
     @lesson_translation = LessonTranslation.new
   end
 
   # GET /lesson_translations/1/edit
   def edit
+    add_breadcrumb @course.name, @course
+    add_breadcrumb @subject.name, @course
+    add_breadcrumb @lesson.name, @course
+    add_breadcrumb @lesson_translation.language.name,
+                   edit_course_subject_lesson_lesson_translation_path(
+                     :course_id => @course,
+                     :subject_id => @subject,
+                     :lesson_id => @lesson,
+                     :id => @lesson_translation
+                   )
   end
 
   # POST /lesson_translations

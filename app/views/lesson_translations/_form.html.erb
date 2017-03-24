@@ -1,7 +1,7 @@
 <%= simple_form_for([@course, @subject, @lesson, @lesson_translation]) do |f| %>
   <%= f.error_notification %>
 
-  <%= f.input :content, as: :text %>
+  <%= f.input :content, as: :text, :input_html => {:rows => 10}, :label => "Translation" %>
   <%= f.input :status,
     collection: LessonTranslation.statuses.keys,
     :label_method => lambda { |status| status.capitalize },

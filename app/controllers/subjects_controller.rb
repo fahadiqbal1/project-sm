@@ -4,6 +4,8 @@ class SubjectsController < ApplicationController
   before_action :authenticate_admin!, :except => [:show, :index]
   before_action :set_subject, :only => [:show, :edit, :update, :destroy]
 
+  add_breadcrumb "Courses", :courses_path
+
   # GET /subjects/1
   def show
   end
@@ -13,7 +15,7 @@ class SubjectsController < ApplicationController
     @subject = Subject.new
     @course = Course.find(params[:course_id])
     add_breadcrumb @course.name, @course
-    add_breadcrumb "Add New", new_course_subject_path
+    add_breadcrumb "New Subject", new_course_subject_path
   end
 
   # GET /subjects/1/edit

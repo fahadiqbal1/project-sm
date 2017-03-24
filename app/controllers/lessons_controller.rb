@@ -4,6 +4,8 @@ class LessonsController < ApplicationController
   before_action :authenticate_admin!, :except => [:show, :index]
   before_action :set_lesson, :only => [:show, :edit, :update, :destroy]
 
+  add_breadcrumb "Courses", :courses_path
+
   # GET /lessons/1
   def show
     add_breadcrumb @course.name, @course
@@ -22,7 +24,7 @@ class LessonsController < ApplicationController
     @lesson = Lesson.new
     add_breadcrumb @course.name, @course
     add_breadcrumb @subject.name, @course
-    add_breadcrumb "Add New", new_course_subject_lesson_path
+    add_breadcrumb "New Lesson", new_course_subject_lesson_path
   end
 
   # GET /lessons/1/edit
