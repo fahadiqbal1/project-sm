@@ -22,13 +22,13 @@ en:
           title: How It Works
           sign_up: Sign Up
           sign_up_description: We just need your phone number and your language to start sending you daily messages!
-          receive_sms: Recieve SMS
+          receive_sms: Receive SMS
           receive_sms_description: Everyday, at the time of your choosing, we will send you a SMS with a snippet of your course or quote and a link to the full version.
           enjoy: Enjoy!
           enjoy_description: Enjoy the content and be sure to send us your feedback or contribute in creating and translating new content
   #Profile Page
   user_preference:
-    not_contsented_yet: You must consent to the application prior to being able to recieve messages
+    not_contsented_yet: You must consent to the application prior to being able to receive messages
     no_course_selected: You have not selected any courses yet. You can do so in the profile page
     no_language_selected: You have not selected any message language(s). You can do so in the profile page
     index:

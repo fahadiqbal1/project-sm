@@ -86,7 +86,7 @@
                     <div class="col-sm-9">
                         <%= user_pref.country_select(
                             :country_of_origin,
-                            { priority_countries: ["AF", "SY", "IQ"], selected: @user.user_preference.country_of_origin },
+                            { priority_countries: ["AF", "SY", "IQ"], include_blank: true, selected: @user.user_preference.country_of_origin },
                             { class: 'form-control', data: { attribute: "value" } }
                         ) %>
                         <p class="form-text text-muted">Optional</p>

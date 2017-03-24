@@ -17,7 +17,7 @@ class LessonsController < ApplicationController
 
   # GET /lessons/new
   def new
-    @course = Course.find(params[:course_id])
+    @course = Course.find_by(:sequential_id => params[:course_id])
     @subject = @course.subjects.find_by(:sequential_id => params[:subject_id])
     @lesson = Lesson.new
     add_breadcrumb @course.name, @course

@@ -29,7 +29,7 @@ require "test_helper"
 class UserTest < ActiveSupport::TestCase
   test "valid user" do
     user = User.new(
-      :phone_number => "123456789",
+      :phone_number => "2105556689",
       :phone_dial_code => 1,
       :password => "test123"
     )
